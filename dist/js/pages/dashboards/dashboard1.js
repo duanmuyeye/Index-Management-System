@@ -1,26 +1,49 @@
-/*
-Template Name: Admin Pro Admin
-Author: Wrappixel
-Email: niravjoshi87@gmail.com
-File: js
-*/
+
 $(function() {
     "use strict";
+
+    Morris.Donut({
+        element: 'morris-donut-chart',
+        data: [{
+            label: "江河湖生态",
+            value: 4,
+
+        }, {
+            label: "暴雨内涝",
+            value: 6
+        }, {
+            label: "区域交通",
+            value: 13
+        }],
+        resize: true,
+        colors:['#2962FF', '#55ce63', '#2f3d4a']
+    });
 
     // ============================================================== 
     // sales ratio
     // ============================================================== 
+
+    //此处逻辑存在问题 未考虑月份交替的情况  后需更改！！！！！！！！！
+    var d = new Date();
+    var s = d.getDate();
+    var today1=(d.getMonth()+1).toString()+"月"+(d.getDate()-6).toString()+"日";
+    var today2=(d.getMonth()+1).toString()+"月"+(d.getDate()-5).toString()+"日";
+    var today3=(d.getMonth()+1).toString()+"月"+(d.getDate()-4).toString()+"日";
+    var today4=(d.getMonth()+1).toString()+"月"+(d.getDate()-3).toString()+"日";
+    var today5=(d.getMonth()+1).toString()+"月"+(d.getDate()-2).toString()+"日";
+    var today6=(d.getMonth()+1).toString()+"月"+(d.getDate()-1).toString()+"日";
+    var today7=(d.getMonth()+1).toString()+"月"+d.getDate().toString()+"日";
     var chart = new Chartist.Line('.sales', {
-        labels: ['星期一', 2, 3, 4, 5, 6, 7],
+        labels: [today1, today2,today3,today4,today5,today6,today7],
         series: [
-            [24.5, 20.3, 42.7, 32, 34.9, 48.6, 40],
-            [8.9, 5.8, 21.9, 5.8, 16.5, 6.5, 14.5]
+            [6, 2, 4, 3, 9, 6, 4]
+           
         ]
     }, {
         low: 0,
-        high: 48,
+        high: 9,
         showArea: true,
-        fullWidth: true,
+        fullWidth: false,
         plugins: [
             Chartist.plugins.tooltip()
         ],
@@ -29,7 +52,7 @@ $(function() {
             scaleMinSpace: 40,
             offset: 20,
             labelInterpolationFnc: function(value) {
-                return (value / 10) + 'k';
+                return (value );
             }
         },
 
@@ -51,7 +74,7 @@ $(function() {
         var defs = ctx.svg.elem('defs');
         defs.elem('linearGradient', {
             id: 'gradient',
-            x1: 0,
+            x1: 1,
             y1: 1,
             x2: 0,
             y2: 0
@@ -75,9 +98,9 @@ $(function() {
         bindto: '#campaign',
         data: {
             columns: [
-                ['地面领域', 865],
-                ['航天领域', 665],
-                ['航空领域', 82],
+                ['江河湖生态', 4],
+                ['暴雨内涝', 6],
+                ['区域交通', 13],
                
             ],
 

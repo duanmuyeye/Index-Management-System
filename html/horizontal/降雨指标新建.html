@@ -10,15 +10,15 @@
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/favicon.png">
-    <title>指标管理系统--首页</title>
+    <title>指标管理系统--指标建模</title>
     <!-- Custom CSS -->
     <link href="../../assets/libs/chartist/dist/chartist.min.css" rel="stylesheet">
     <link href="../../assets/extra-libs/c3/c3.min.css" rel="stylesheet">
     <link href="../../assets/extra-libs/jvector/jquery-jvectormap-2.0.2.css" rel="stylesheet" />
     <!-- Custom CSS -->
     <link href="../../dist/css/style.min.css" rel="stylesheet">
-    <!-- This Page CSS -->
-    <link href="../../assets/libs/morris.js/morris.css" rel="stylesheet">
+    <!-- ace styles -->
+    <!--link rel="stylesheet" href="../../tree_files/ace.min.css"-->
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -372,21 +372,20 @@
                             </ul>
                         </li>
                         <li class="nav-small-cap">
-                        <li class="sidebar-item"><a href="form-input-grid.html" class="sidebar-link"><i class="mdi mdi-select-all"></i><span class="hide-menu">指标映射查询</span></a></li>
-                            
-                        </li>
-                            
-                        </li>
-                        <li class="nav-small-cap"><i class="mdi mdi-dots-horizontal"></i> <span class="hide-menu">Tables</span></li>
-                        <li class="sidebar-item"><a href="form-input-grid.html" class="sidebar-link"><i class="mdi mdi-select-all"></i><span class="hide-menu">传感器资源库</span></a></li>
-                        </li>
-                        <li class="nav-small-cap"><i class="mdi mdi-dots-horizontal"></i> <span class="hide-menu">Charts</span></li>
-                        <li class="sidebar-item">
-                        </li>
-                        <li class="nav-small-cap"><i class="mdi mdi-dots-horizontal"></i> <span class="hide-menu">Sample Pages</span></li>
-                        <li class="sidebar-item mega-dropdown"> 
-                        </li>
-        
+                            <li class="sidebar-item"><a href="form-input-grid.html" class="sidebar-link"><i class="mdi mdi-select-all"></i><span class="hide-menu">指标映射查询</span></a></li>
+                                
+                            </li>
+                                
+                            </li>
+                            <li class="nav-small-cap"><i class="mdi mdi-dots-horizontal"></i> <span class="hide-menu">Tables</span></li>
+                            <li class="sidebar-item"><a href="form-input-grid.html" class="sidebar-link"><i class="mdi mdi-select-all"></i><span class="hide-menu">传感器资源库</span></a></li>
+                            </li>
+                            <li class="nav-small-cap"><i class="mdi mdi-dots-horizontal"></i> <span class="hide-menu">Charts</span></li>
+                            <li class="sidebar-item">
+                            </li>
+                            <li class="nav-small-cap"><i class="mdi mdi-dots-horizontal"></i> <span class="hide-menu">Sample Pages</span></li>
+                            <li class="sidebar-item mega-dropdown"> 
+                            </li>
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->
@@ -406,19 +405,39 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-5 align-self-center">
-                        <h4 class="page-title">资源统计</h4>
+                        <h4 class="page-title">新建降雨指标</h4>
                     </div>
                     <div class="col-7 align-self-center">
                         <div class="d-flex align-items-center justify-content-end">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item">
-                                        <a href="#">主页</a>
+                                        <a href="index.html">Home</a>
                                     </li>
-                                    <li class="breadcrumb-item active" aria-current="page">资源统计</li>
+                                    <li class="breadcrumb-item">
+                                       指标建模
+                                    </li>
+                                    <li class="breadcrumb-item active" aria-current="page">降雨</li>
+                                    <li class="breadcrumb-item active" aria-current="page">降雨新建</li>
                                 </ol>
                             </nav>
                         </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">多空间尺度下降雨指标</h4>
+                        <div class="row">
+                            <div class="col-md-12 col-12">                              
+                                <div id="treeview5"></div>
+                            </div>
+
+                        </div>
+                        
+                          
                     </div>
                 </div>
             </div>
@@ -430,388 +449,20 @@
             <!-- ============================================================== -->
             <div class="container-fluid">
                 <!-- ============================================================== -->
-                <!-- Sales chart -->
+                <!-- Start Page Content -->
                 <!-- ============================================================== -->
-                <div class="card-group">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="d-flex no-block align-items-center">
-                                        <div>
-                                            <i class="mdi mdi-emoticon font-20 text-muted"></i>
-                                            <p class="font-16 m-b-5">在库卫星</p>
-                                        </div>
-                                        <div class="ml-auto">
-                                            <h1 class="font-light text-right">665</h1>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="progress">
-                                        <div class="progress-bar bg-info" role="progressbar" style="width:50%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Column -->
-                    <!-- Column -->
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="d-flex no-block align-items-center">
-                                        <div>
-                                            <i class="mdi mdi-emoticon font-20 text-muted"></i>
-                                            <p class="font-16 m-b-5">在库地面站点</p>
-                                        </div>
-                                        <div class="ml-auto">
-                                            <h1 class="font-light text-right">428</h1>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="progress">
-                                        <div class="progress-bar bg-inverse" role="progressbar" style="width: 45%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Column -->
-                    <!-- Column -->
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="d-flex no-block align-items-center">
-                                        <div>
-                                            <i class="mdi mdi-emoticon font-20 text-muted"></i>
-                                            <p class="font-16 m-b-5">在库无人机</p>
-                                        </div>
-                                        <div class="ml-auto">
-                                            <h1 class="font-light text-right">131</h1>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="progress">
-                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 30%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Column -->
-                    <!-- Column -->
-                    
-                </div>
-                <div class="card-group">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="d-flex no-block align-items-center">
-                                        <div>
-                                            <i class="mdi mdi-emoticon font-20 text-muted"></i>
-                                            <p class="font-16 m-b-5">在库移动测量车</p>
-                                        </div>
-                                        <div class="ml-auto">
-                                            <h1 class="font-light text-right">23</h1>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="progress">
-                                        <div class="progress-bar bg-inverse" role="progressbar" style="width: 15%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Column -->
-                    <!-- Column -->
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="d-flex no-block align-items-center">
-                                        <div>
-                                            <i class="mdi mdi-image font-20  text-muted"></i>
-                                            <p class="font-16 m-b-5">在库机器人</p>
-                                        </div>
-                                        <div class="ml-auto">
-                                            <h1 class="font-light text-right">16</h1>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="progress">
-                                        <div class="progress-bar bg-success" role="progressbar" style="width: 12%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Column -->
-                    <!-- Column -->
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="d-flex no-block align-items-center">
-                                        <div>
-                                            <i class="mdi mdi-currency-eur font-20 text-muted"></i>
-                                            <p class="font-16 m-b-5">在库光场相机</p>
-                                        </div>
-                                        <div class="ml-auto">
-                                            <h1 class="font-light text-right">6</h1>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="progress">
-                                        <div class="progress-bar bg-purple" role="progressbar" style="width: 5%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Column -->
-                    <!-- Column -->
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="d-flex no-block align-items-center">
-                                        <div>
-                                            <i class="mdi mdi-poll font-20 text-muted"></i>
-                                            <p class="font-16 m-b-5">在库智能手机</p>
-                                        </div>
-                                        <div class="ml-auto">
-                                            <h1 class="font-light text-right">36</h1>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="progress">
-                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 15%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- ============================================================== -->
-                <!-- Sales chart -->
-                <!-- ============================================================== -->
-                <!-- ============================================================== -->
-                <!-- Email campaign chart -->
-                <!-- ============================================================== -->
-
+                <!-- Row -->
                 
-                <div class="row">
-                    <div class="col-lg-4 col-md-6">
-                        <div class="card">
-                            <div class="card-body analytics-info">
-                                <h4 class="card-title">各传感器平台占比</h4>
-                                <div id="nightingale-chart" style="height:367.6px;"></div>                                                 
-                                <!-- row -->
-                               
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-5 col-md-12 ">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="d-flex align-items-center">
-                                    <div>
-                                        <h4 class="card-title">传感器入库数量</h4>
-                                    </div>
-                                    <div class="ml-auto">
-                                    </div>
-                                </div>
-                                <div class="d-flex align-items-center no-block">
-                                    <div>
-                                        <span class="text-muted">本周</span>
-                                        <h3 class="mb-0 text-info font-light">36个 <span class="text-muted font-12">较上周<i class="mdi mdi-arrow-up text-success"></i>6</span></h3>
-                                    </div>
-                                    
-                                </div>
-                                <div class="sales ct-charts mt-5" ></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    
-                    <div class="col-lg-3 col-md-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">各主题已有指标数</h4>
-                                <div id="morris-donut-chart" style="height:304.4px"></div>
-                                <!-- row -->
-                                <div class="row text-center text-lg-left">
-                                    <!-- column -->
-                                    <div class="col-4">
-                                        <h4 class="m-b-0 font-medium">4个</h4>
-                                        <span class="text-muted">江河湖生态</span>
-                                    </div>
-                                    <!-- column -->
-                                    <div class="col-4">
-                                        <h4 class="m-b-0 font-medium">6个</h4>
-                                        <span class="text-muted">暴雨内涝</span>
-                                    </div>
-                                    <!-- column -->
-                                    <div class="col-4">
-                                        <h4 class="m-b-0 font-medium">13个</h4>
-                                        <span class="text-muted">区域交通</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                        
-                    
-                    
-                </div>
+                <!-- Row -->
                 <!-- ============================================================== -->
-                <!-- Email campaign chart -->
+                <!-- End PAge Content -->
                 <!-- ============================================================== -->
                 <!-- ============================================================== -->
-                <!-- Ravenue - page-view-bounce rate -->
+                <!-- Right sidebar -->
                 <!-- ============================================================== -->
-                <div class="row">
-                    <!-- column -->
-                    <div class="col-lg-12 col-md-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="d-flex align-items-center">
-                                    <div>
-                                        <h4 class="card-title mb-0">最近新增平台</h4>
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                            <div class="card-body bg-light">
-                                <div class="row align-items-center">
-                                    <div class="col-xs-12 col-md-6">
-                                        <h3 class="m-b-0 font-light">十月</h3>
-                                        <span class="font-14 text-muted">新增</span>
-                                    </div>
-                                    <div class="col-xs-12 col-md-6 align-self-center display-6 text-info text-right">⇩</div>
-                                </div>
-                            </div>
-                            <div class="table-responsive">
-                                <table class="table table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th class="border-top-0">平台名称</th>
-                                            <th class="border-top-0">种类</th>
-                                            <th class="border-top-0">入库日期</th>
-                                            <th class="border-top-0">搭载传感器数量</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            
-                                            <td class="txt-oflo">武汉洪山区水位监测站</td>
-                                            <td><span class="label label-success label-rounded">地面站点</span> </td>
-                                            <td class="txt-oflo">2020-10-21</td>
-                                            <td><span class="font-medium">4</span></td>
-                                        </tr>
-                                        <tr>
-                                            
-                                            <td class="txt-oflo">大疆M350</td>
-                                            <td><span class="label label-info label-rounded">无人机</span></td>
-                                            <td class="txt-oflo">2020-10-21</td>
-                                            <td><span class="font-medium">2</span></td>
-                                        </tr>
-                                        <tr>
-                                            
-                                            <td class="txt-oflo">高分三号</td>
-                                            <td><span class="label label-purple label-rounded">卫星</span></td>
-                                            <td class="txt-oflo">2020-10-20</td>
-                                            <td><span class="font-medium">2</span></td>
-                                        </tr>
-                                        <tr>
-                                            
-                                            <td class="txt-oflo">地大RFID微网监测组</td>
-                                            <td><span class="label label-success label-rounded">地面站点</span></td>
-                                            <td class="txt-oflo">2020-10-19</td>
-                                            <td><span class="font-medium">502</span></td>
-                                        </tr>
-                                        <tr>
-                                            
-                                            <td class="txt-oflo">武汉市东湖高新技术开发区有害气体监测站</td>
-                                            <td><span class="label label-success label-rounded">地面站点</span></td>
-                                            <td class="txt-oflo">2020-10-19</td>
-                                            <td><span class="font-medium">4</span></td>
-                                        </tr>
-                                        <tr>
-                                            
-                                            <td class="txt-oflo">武汉西收费站站顶1号光场相机</td>
-                                            <td><span class="label label-danger label-rounded">光场相机</span> </td>
-                                            <td class="txt-oflo">2020-10-18</td>
-                                            <td><span class="font-medium">1</span></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-12 col-md-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="d-flex align-items-center">
-                                    <div>
-                                        <h4 class="card-title m-b-0">传感器分布</h4>
-                                    </div>
-                                    
-                                </div>
-                                <div id="visitfromworld" style="height: 365px"></div>
-                                <!-- row -->
-                                <div class="row m-t-40 text-center text-lg-left">
-                                    <!-- column -->
-                                    <div class="col-xs-12 col-md-4">
-                                        <div class="mb-2 mt-2">
-                                            <span class="label label-success label-rounded">+23%</span>
-                                            <h5 class="font-normal text-muted m-t-10 m-b-5">United States</h5>
-                                            <span class="font-20 font-medium">3234 <span class="font-14 font-normal text-muted">($3549.54)</span></span>
-                                        </div>
-                                    </div>
-                                    <!-- column -->
-                                    <div class="col-xs-12 col-md-4">
-                                        <div class="mb-2 mt-2">
-                                            <span class="label label-info label-rounded">+0.5%</span>
-                                            <h5 class="font-normal text-muted m-t-10 m-b-5">Europe</h5>
-                                            <span class="font-20 font-medium">2548 <span class="font-14 font-normal text-muted">($3549.54)</span></span>
-                                        </div>
-                                    </div>
-                                    <!-- column -->
-                                    <div class="col-xs-12 col-md-4">
-                                        <div class="mb-2 mt-2">
-                                            <span class="label label-danger label-rounded">-18%</span>
-                                            <h5 class="font-normal text-muted m-t-10 m-b-5">Australia</h5>
-                                            <span class="font-20 font-medium">1476 <span class="font-14 font-normal text-muted">($3549.54)</span></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <!-- .right-sidebar -->
                 <!-- ============================================================== -->
-                <!-- Ravenue - page-view-bounce rate -->
-                <!-- ============================================================== -->
-                <!-- ============================================================== -->
-                <!-- Recent comment and chats -->
-                <!-- ============================================================== -->
-                
-                    
-                <!-- ============================================================== -->
-                <!-- Recent comment and chats -->
+                <!-- End Right sidebar -->
                 <!-- ============================================================== -->
             </div>
             <!-- ============================================================== -->
@@ -820,7 +471,6 @@
             <!-- ============================================================== -->
             <!-- footer -->
             <!-- ============================================================== -->
-            
             <footer class="footer text-center">
                 Sensor Web------中国地质大学（武汉）------
                 <a href="">地球空间感知与计算研究中心</a>.
@@ -840,8 +490,7 @@
     <!-- customizer Panel -->
     <!-- ============================================================== -->
     <aside class="customizer">
-        <a href="javascript:void(0)" class="service-panel-toggle">
-            <i class="fa fa-spin fa-cog"></i></a>
+        <a href="javascript:void(0)" class="service-panel-toggle"><i class="fa fa-spin fa-cog"></i></a>
         <div class="customizer-body">
             <ul class="nav customizer-tab" role="tablist">
                 <li class="nav-item">
@@ -1046,11 +695,7 @@
             </div>
         </div>
     </aside>
-
     <div class="chat-windows"></div>
-    <!-- ============================================================== -->
-    <!-- All Jquery -->
-    <!-- ============================================================== -->
     <!-- ============================================================== -->
     <!-- All Jquery -->
     <!-- ============================================================== -->
@@ -1070,22 +715,13 @@
     <!--Menu sidebar -->
     <script src="../../dist/js/sidebarmenu.js"></script>
     <!--Custom JavaScript -->
-    <script src="../../dist/js/custom.js"></script>
+    <script src="../../dist/js/custom.min.js"></script>
+    <script src="../../assets/libs/nestable/jquery.nestable.js"></script>
+
     <!--This page JavaScript -->
-    <script src="../../assets/libs/echarts/dist/echarts-en.min.js"></script>
-    <script src="../../dist/js/pages/echarts/pie-doughnut/pie-doghnut.js"></script>
-    <!--chartis chart-->
-    <script src="../../assets/libs/chartist/dist/chartist.min.js"></script>
-    <script src="../../assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
-    <!--c3 charts -->
-    <script src="../../assets/extra-libs/c3/d3.min.js"></script>
-    <script src="../../assets/extra-libs/c3/c3.min.js"></script>
-    <script src="../../assets/extra-libs/jvector/jquery-jvectormap-2.0.2.min.js"></script>
-    <script src="../../assets/extra-libs/jvector/jquery-jvectormap-world-mill-en.js"></script>
-    <script src="../../dist/js/pages/dashboards/dashboard1.js"></script>
-    <!--Morris JavaScript -->
-    <script src="../../assets/libs/raphael/raphael.min.js"></script>
-    <script src="../../assets/libs/morris.js/morris.min.js"></script>
+    <script src="../../assets/extra-libs/treeview/dist/bootstrap-treeview.min.js"></script>
+    <script src="../../assets/extra-libs/treeview/dist/bootstrap-treeview-init.js"></script>
+    
 </body>
 
 </html>

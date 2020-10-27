@@ -186,7 +186,15 @@ $(function() {
           selectedBackColor: "#03a9f3",
           collapseIcon: 'ti-angle-down',
           nodeIcon: 'fa fa-bookmark',
-          data: defaultData
+          data: defaultData,
+          onNodeSelected:function(event, data) {
+          var node= $('#treeview5').treeview('getSelected');
+          document.getElementById("showdetail").style.display = 'block' ;
+          
+          document.getElementById("observationmodel").style.display = 'none' ;
+          
+        }
+
         });
 
         $('#treeview6').treeview({

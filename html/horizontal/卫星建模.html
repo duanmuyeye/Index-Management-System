@@ -11,14 +11,11 @@
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/favicon.png">
     <title>指标管理系统--指标建模</title>
-    <!-- Custom CSS -->
-    <link href="../../assets/libs/chartist/dist/chartist.min.css" rel="stylesheet">
-    <link href="../../assets/extra-libs/c3/c3.min.css" rel="stylesheet">
-    <link href="../../assets/extra-libs/jvector/jquery-jvectormap-2.0.2.css" rel="stylesheet" />
+    <!-- This page CSS -->
+    <link href="../../assets/libs/jquery-steps/jquery.steps.css" rel="stylesheet">
+    <link href="../../assets/libs/jquery-steps/steps.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="../../dist/css/style.min.css" rel="stylesheet">
-    <!-- This Page CSS -->
-    <link rel="stylesheet" type="text/css" href="../../assets/extra-libs/prism/prism.css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -317,7 +314,7 @@
                         
                         <li class="sidebar-item"> <a class="sidebar-link two-column has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-inbox-arrow-down"></i><span class="hide-menu">观测建模 </span></a>
                             <ul aria-expanded="false" class="collapse first-level">
-                                <li class="sidebar-item"><a href="inbox-email.html" class="sidebar-link"><i class="mdi mdi-email"></i><span class="hide-menu"> 卫星平台 </span></a></li>
+                                <li class="sidebar-item"><a href="卫星建模.html" class="sidebar-link"><i class="mdi mdi-email"></i><span class="hide-menu"> 卫星平台 </span></a></li>
                                 <li class="sidebar-item"><a href="inbox-email-detail.html" class="sidebar-link"><i class="mdi mdi-email-alert"></i><span class="hide-menu"> 地面站点平台 </span></a></li>
                                 <li class="sidebar-item"><a href="inbox-email-compose.html" class="sidebar-link"><i class="mdi mdi-email-secure"></i><span class="hide-menu"> 无人机平台 </span></a></li>
                                 <li class="sidebar-item"><a href="ticket-list.html" class="sidebar-link"><i class="mdi mdi-book-multiple"></i><span class="hide-menu"> 移动测量车平台 </span></a></li>
@@ -405,19 +402,16 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-5 align-self-center">
-                        <h4 class="page-title">降雨</h4>
+                        <h4 class="page-title">卫星平台建模</h4>
                     </div>
                     <div class="col-7 align-self-center">
                         <div class="d-flex align-items-center justify-content-end">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item">
-                                        <a href="index.html">Home</a>
+                                        <a href="#">Home</a>
                                     </li>
-                                    <li class="breadcrumb-item">
-                                       指标建模
-                                    </li>
-                                    <li class="breadcrumb-item active" aria-current="page">降雨</li>
+                                    <li class="breadcrumb-item active" aria-current="page">卫星平台建模</li>
                                 </ol>
                             </nav>
                         </div>
@@ -434,524 +428,268 @@
                 <!-- ============================================================== -->
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
-                <!-- Row -->
                 <div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-3">
                         <div class="card">
-                            <div class="card-header bg-info">
-                                <h4 class="m-b-0 text-white">默认降雨指标参数</h4>
+                            <div class="card-body">
+                                <h4 class="card-title">已有卫星平台列表</h4>
+                                <div class="row">
+                                    <div class="col-md-12 col-12">                              
+                                        <div id="treeview5"></div>
+                                    </div>        
+                                </div>                                                         
                             </div>
-                            <form class="form-horizontal">
-                                <div class="form-body">
-                                    <ul class="nav nav-pills m-t-30 m-b-30">
-                                        <li class=" nav-item"> <a href="#navpills-1" class="nav-link active" data-toggle="tab" aria-expanded="false">城市群</a> </li>
-                                        <li class="nav-item"> <a href="#navpills-2" class="nav-link" data-toggle="tab" aria-expanded="false">城市</a> </li>
-                                        <li class="nav-item"> <a href="#navpills-3" class="nav-link" data-toggle="tab" aria-expanded="true">街区</a> </li>
-                                    </ul>
-                                    <div class="tab-content br-n pn">
-                                        <div id="navpills-1" class="tab-pane active">
-                                            <div class="row">                                               
-                                                <hr class="m-t-0 m-b-40">
-                                                <div class="card-body">                                                   
-                                                    <div class="p-20">
-                                                        <h4>降雨强度（mm/h）</h4>                                                       
-                                                    </div>                                             
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group row">
-                                                                <label class="control-label text-right col-md-2"><span class="text-danger">*</span>时间分辨率:</label>
-                                                                <div class="col-md-10">
-                                                                    <p class="form-control-static"> 日/次 </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>                                                       
+                        </div>
+                    </div>
+                    
+                    
+                    <!-- ============================================================== -->
+                    <!-- Example -->
+                    <!-- ============================================================== -->
+                    <div class="col-9" style="display: none;" id="showdetail">
+                        <div class="card">
+                            <div class="card-body wizard-content">
+                                <div class="row">                                               
+                                    <hr class="m-t-0 m-b-40">
+                                    <div class="card-body">                                                   
+                                        <div class="p-20">
+                                            <h4>建模信息速览</h4>                                                       
+                                        </div>                                             
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group row">
+                                                    <label class="control-label text-left col-md-3"><span class="text-danger">*</span>卫星名称：</label>
+                                                    <div class="col-md-9">
+                                                        <p class="form-control-static"> Fengyun-1 </p>
                                                     </div>
-                                                    <!--/row-->
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group row">
-                                                                <label class="control-label text-right col-md-2"><span class="text-danger">*</span>空间分辨率:</label>
-                                                                <div class="col-md-10">
-                                                                    <p class="form-control-static"> 10~100 km </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>                                                       
-                                                    </div>
-                                                    <!--/row-->
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group row">
-                                                                <label class="control-label text-right col-md-2">波段类型:</label>
-                                                                <div class="col-md-10">
-                                                                    <p class="form-control-static"> NULL </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>                                                       
-                                                    </div>
-                                                    <!--/row-->
-
-
-
-                                                    <div class="p-20">
-                                                        <h4>日降雨量（mm）</h4>                                                       
-                                                    </div>                                             
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group row">
-                                                                <label class="control-label text-right col-md-2"><span class="text-danger">*</span>时间分辨率:</label>
-                                                                <div class="col-md-10">
-                                                                    <p class="form-control-static"> 日/次 </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>                                                       
-                                                    </div>
-                                                    <!--/row-->
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group row">
-                                                                <label class="control-label text-right col-md-2"><span class="text-danger">*</span>空间分辨率:</label>
-                                                                <div class="col-md-10">
-                                                                    <p class="form-control-static"> 10~100 km </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>                                                       
-                                                    </div>
-                                                    <!--/row-->
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group row">
-                                                                <label class="control-label text-right col-md-2">波段类型:</label>
-                                                                <div class="col-md-10">
-                                                                    <p class="form-control-static"> NULL </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>                                                       
-                                                    </div>
-
-                                                    <div class="p-20">
-                                                        <h4>累计降雨量（mm）</h4>                                                       
-                                                    </div>                                             
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group row">
-                                                                <label class="control-label text-right col-md-2"><span class="text-danger">*</span>时间分辨率:</label>
-                                                                <div class="col-md-10">
-                                                                    <p class="form-control-static"> 日/次 </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>                                                       
-                                                    </div>
-                                                    <!--/row-->
-
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group row">
-                                                                <label class="control-label text-right col-md-2"><span class="text-danger">*</span>空间分辨率:</label>
-                                                                <div class="col-md-10">
-                                                                    <p class="form-control-static"> 10~100 km </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>                                                       
-                                                    </div>
-
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group row">
-                                                                <label class="control-label text-right col-md-2">波段类型:</label>
-                                                                <div class="col-md-10">
-                                                                    <p class="form-control-static"> NULL </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>                                                       
-                                                    </div>
-
-                                                    <div class="p-20">
-                                                        <h4>最大降雨量（mm）</h4>                                                       
-                                                    </div>                                             
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group row">
-                                                                <label class="control-label text-right col-md-2"><span class="text-danger">*</span>时间分辨率:</label>
-                                                                <div class="col-md-10">
-                                                                    <p class="form-control-static"> 日/次 </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>                                                       
-                                                    </div>
-                                                    <!--/row-->
-
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group row">
-                                                                <label class="control-label text-right col-md-2"><span class="text-danger">*</span>空间分辨率:</label>
-                                                                <div class="col-md-10">
-                                                                    <p class="form-control-static"> 10~100 km </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>                                                       
-                                                    </div>
-
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group row">
-                                                                <label class="control-label text-right col-md-2">波段类型:</label>
-                                                                <div class="col-md-10">
-                                                                    <p class="form-control-static"> NULL </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>                                                       
-                                                    </div>
-                                                    
                                                 </div>
-                                                                                                                                          
-                                                <hr class="m-t-0 m-b-40">
-                                                
+                                            </div>                                                       
+                                        </div>
+                                        <!--/row-->
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group row">
+                                                    <label class="control-label text-left col-md-3"><span class="text-danger">*</span>NORAD NUMBER:</label>
+                                                    <div class="col-md-9">
+                                                        <p class="form-control-static"> 25544</p>
+                                                    </div>
+                                                </div>
+                                            </div>                                                       
+                                        </div>
+                                        <!--/row-->
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group row">
+                                                    <label class="control-label text-left col-md-3"><span class="text-danger">*</span>唯一标识码:</label>
+                                                    <div class="col-md-9">
+                                                        <p class="form-control-static"> urn:satellite:1 </p>
+                                                    </div>
+                                                </div>
+                                            </div>                                                       
+                                        </div>
+                                        <!--/row-->
+
+
+
+                                        
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group row">
+                                                    <div class="col-md-9"></div>
+                                                    <div class="col-md-3">
+                                                        <button type="button" class="btn waves-effect waves-light btn-rounded btn-primary">添加负载传感器</button>
+                                                    </div>
+                                                </div>
+                                            </div>                                                       
+                                        </div>
+                                        
+                                    </div>
+                                                                                                                            
+                                    <hr class="m-t-0 m-b-40">
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="col-9" id="observationmodel">
+                        <div class="card">
+                            <div class="card-body wizard-content">
+                                
+                                <h6 class="card-subtitle">请按步骤进行操作，带'<span class="danger" style="color: red;">*</span>'为必选项</h6>
+                                <form action="#" class="validation-wizard wizard-circle m-t-40">
+                                    <!-- Step 1 -->
+                                    <h6>1、基本信息</h6>
+                                    <section>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="wfirstName2"> 卫星名称:<span class="danger" style="color: red;">*</span> </label>
+                                                    <input type="text" class="form-control required" id="wfirstName2" name="firstName"> </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="wlastName2"> 唯一标识码:<span class="danger" style="color: red;">*</span> </label>
+                                                    <input type="text" class="form-control required" id="wlastName2" name="lastName"> </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="wemailAddress2"> 所属国家:<span class="danger" style="color: red;">*</span> </label>
+                                                    <input type="text" class="form-control required" id="wemailAddress2" name="emailAddress"> </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="wphoneNumber2">运营商:</label>
+                                                    <input type="tel" class="form-control" id="wphoneNumber2"> </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="wlocation2"> 使用者:<span class="danger" style="color: red;">*</span> </label>
+                                                    <select class="custom-select form-control required" id="wlocation2" name="location">
+                                                        <option value="">请选择</option>
+                                                        <option value="政府">政府</option>
+                                                        <option value="商用">商用</option>
+                                                        
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="wdate2">发射日期:</label>
+                                                    <input type="date" class="form-control" id="wdate2"> </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="application"> 预期应用:<span class="danger" style="color: red;">*</span> </label>
+                                                    <input type="text" class="form-control required" id="application" name="firstName2"> </div>
                                             </div>
                                             
                                         </div>
-                                        <div id="navpills-2" class="tab-pane">
-                                            <div class="row">                                               
-                                                <hr class="m-t-0 m-b-40">
-                                                <div class="card-body">                                                   
-                                                    <div class="p-20">
-                                                        <h4>降雨强度（mm/h）</h4>                                                       
-                                                    </div>                                             
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group row">
-                                                                <label class="control-label text-right col-md-2"><span class="text-danger">*</span>时间分辨率:</label>
-                                                                <div class="col-md-10">
-                                                                    <p class="form-control-static">6-12 小时/次 </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>                                                       
-                                                    </div>
-                                                    <!--/row-->
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group row">
-                                                                <label class="control-label text-right col-md-2"><span class="text-danger">*</span>空间分辨率:</label>
-                                                                <div class="col-md-10">
-                                                                    <p class="form-control-static"> 10~30 km </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>                                                       
-                                                    </div>
-                                                    <!--/row-->
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group row">
-                                                                <label class="control-label text-right col-md-2">波段类型:</label>
-                                                                <div class="col-md-10">
-                                                                    <p class="form-control-static"> NULL </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>                                                       
-                                                    </div>
-                                                    <!--/row-->
-
-
-
-                                                    <div class="p-20">
-                                                        <h4>日降雨量（mm）</h4>                                                       
-                                                    </div>                                             
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group row">
-                                                                <label class="control-label text-right col-md-2"><span class="text-danger">*</span>时间分辨率:</label>
-                                                                <div class="col-md-10">
-                                                                    <p class="form-control-static"> 日/次 </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>                                                       
-                                                    </div>
-                                                    <!--/row-->
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group row">
-                                                                <label class="control-label text-right col-md-2"><span class="text-danger">*</span>空间分辨率:</label>
-                                                                <div class="col-md-10">
-                                                                    <p class="form-control-static"> 10~30 km </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>                                                       
-                                                    </div>
-                                                    <!--/row-->
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group row">
-                                                                <label class="control-label text-right col-md-2">波段类型:</label>
-                                                                <div class="col-md-10">
-                                                                    <p class="form-control-static"> NULL </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>                                                       
-                                                    </div>
-
-                                                    <div class="p-20">
-                                                        <h4>累计降雨量（mm）</h4>                                                       
-                                                    </div>                                             
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group row">
-                                                                <label class="control-label text-right col-md-2"><span class="text-danger">*</span>时间分辨率:</label>
-                                                                <div class="col-md-10">
-                                                                    <p class="form-control-static">6-12 小时/次</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>                                                       
-                                                    </div>
-                                                    <!--/row-->
-
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group row">
-                                                                <label class="control-label text-right col-md-2"><span class="text-danger">*</span>空间分辨率:</label>
-                                                                <div class="col-md-10">
-                                                                    <p class="form-control-static"> 10~30 km </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>                                                       
-                                                    </div>
-
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group row">
-                                                                <label class="control-label text-right col-md-2">波段类型:</label>
-                                                                <div class="col-md-10">
-                                                                    <p class="form-control-static"> NULL </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>                                                       
-                                                    </div>
-
-                                                    <div class="p-20">
-                                                        <h4>最大降雨量（mm）</h4>                                                       
-                                                    </div>                                             
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group row">
-                                                                <label class="control-label text-right col-md-2"><span class="text-danger">*</span>时间分辨率:</label>
-                                                                <div class="col-md-10">
-                                                                    <p class="form-control-static">6-12 小时/次</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>                                                       
-                                                    </div>
-                                                    <!--/row-->
-
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group row">
-                                                                <label class="control-label text-right col-md-2"><span class="text-danger">*</span>空间分辨率:</label>
-                                                                <div class="col-md-10">
-                                                                    <p class="form-control-static"> 10~30 km </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>                                                       
-                                                    </div>
-
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group row">
-                                                                <label class="control-label text-right col-md-2">波段类型:</label>
-                                                                <div class="col-md-10">
-                                                                    <p class="form-control-static"> NULL </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>                                                       
-                                                    </div>
+                                        <div class="form-group row">
+                                            <div class="col-md-12">
+                                                <label for="description"> 卫星平台信息描述:</label>
+                                                <textarea class="form-control" id="description" rows="3" style="margin-top: 0px; margin-bottom: 0px; height: 128px;"></textarea>
+                                            </div>
+                                        </div>
+                                        
+                                        
+                                    </section>
+                                    <!-- Step 2 -->
+                                    <h6>2、位置信息</h6>
+                                    <section>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="noradid">NORAD NUMBER:<span class="danger" style="color: red;">*</span></label>
+                                                    <input type="text" class="form-control required" id="noradid">
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                    </section>
+                                    <!-- Step 3 -->
+                                    <h6>3、轨道信息</h6>
+                                    <section>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="Class of Orbit">轨道种类：</label>
+                                                    <input type="text" class="form-control " id="Class of Orbit"> 
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="Type of Orbit">轨道类型：</label>
+                                                    <input type="text" class="form-control" id="Type of Orbit"> 
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="Repeat Cycle">重复周期（天）：</label>
+                                                    <input type="text" class="form-control" id="Repeat Cycle"> 
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="Alt">轨道高程：</label>
+                                                    <input type="text" class="form-control " id="Alt">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">                                    
+                                                <div class="form-group">
+                                                    <label for="Perigee">近地点高度（KM）：</label>
+                                                    <input type="text" class="form-control " id="Perigee">
                                                     
                                                 </div>
-                                                                                                                                          
-                                                <hr class="m-t-0 m-b-40">
-                                                
+                                            </div> 
+                                            <div class="col-md-6"> 
+                                                <div class="form-group">
+                                                    <label for="Apogee">远地点高度（KM）：</label>
+                                                    <input type="text" class="form-control " id="Apogee">
+                                         
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div id="navpills-3" class="tab-pane">
-                                            <div class="row">                                               
-                                                <hr class="m-t-0 m-b-40">
-                                                <div class="card-body">                                                   
-                                                    <div class="p-20">
-                                                        <h4>降雨强度（mm/h）</h4>                                                       
-                                                    </div>                                             
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group row">
-                                                                <label class="control-label text-right col-md-2"><span class="text-danger">*</span>时间分辨率:</label>
-                                                                <div class="col-md-10">
-                                                                    <p class="form-control-static"> 小时/次 </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>                                                       
-                                                    </div>
-                                                    <!--/row-->
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group row">
-                                                                <label class="control-label text-right col-md-2"><span class="text-danger">*</span>空间分辨率:</label>
-                                                                <div class="col-md-10">
-                                                                    <p class="form-control-static"> 10~100 m </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>                                                       
-                                                    </div>
-                                                    <!--/row-->
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group row">
-                                                                <label class="control-label text-right col-md-2">波段类型:</label>
-                                                                <div class="col-md-10">
-                                                                    <p class="form-control-static"> NULL </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>                                                       
-                                                    </div>
-                                                    <!--/row-->
 
-
-
-                                                    <div class="p-20">
-                                                        <h4>日降雨量（mm）</h4>                                                       
-                                                    </div>                                             
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group row">
-                                                                <label class="control-label text-right col-md-2"><span class="text-danger">*</span>时间分辨率:</label>
-                                                                <div class="col-md-10">
-                                                                    <p class="form-control-static"> 日/次 </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>                                                       
-                                                    </div>
-                                                    <!--/row-->
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group row">
-                                                                <label class="control-label text-right col-md-2"><span class="text-danger">*</span>空间分辨率:</label>
-                                                                <div class="col-md-10">
-                                                                    <p class="form-control-static"> 10~100 m </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>                                                       
-                                                    </div>
-                                                    <!--/row-->
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group row">
-                                                                <label class="control-label text-right col-md-2">波段类型:</label>
-                                                                <div class="col-md-10">
-                                                                    <p class="form-control-static"> NULL </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>                                                       
-                                                    </div>
-
-                                                    <div class="p-20">
-                                                        <h4>累计降雨量（mm）</h4>                                                       
-                                                    </div>                                             
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group row">
-                                                                <label class="control-label text-right col-md-2"><span class="text-danger">*</span>时间分辨率:</label>
-                                                                <div class="col-md-10">
-                                                                    <p class="form-control-static"> 小时/次 </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>                                                       
-                                                    </div>
-                                                    <!--/row-->
-
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group row">
-                                                                <label class="control-label text-right col-md-2"><span class="text-danger">*</span>空间分辨率:</label>
-                                                                <div class="col-md-10">
-                                                                    <p class="form-control-static"> 10~100 m </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>                                                       
-                                                    </div>
-
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group row">
-                                                                <label class="control-label text-right col-md-2">波段类型:</label>
-                                                                <div class="col-md-10">
-                                                                    <p class="form-control-static"> NULL </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>                                                       
-                                                    </div>
-
-                                                    <div class="p-20">
-                                                        <h4>最大降雨量（mm）</h4>                                                       
-                                                    </div>                                             
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group row">
-                                                                <label class="control-label text-right col-md-2"><span class="text-danger">*</span>时间分辨率:</label>
-                                                                <div class="col-md-10">
-                                                                    <p class="form-control-static"> 小时/次 </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>                                                       
-                                                    </div>
-                                                    <!--/row-->
-
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group row">
-                                                                <label class="control-label text-right col-md-2"><span class="text-danger">*</span>空间分辨率:</label>
-                                                                <div class="col-md-10">
-                                                                    <p class="form-control-static"> 10~100 m </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>                                                       
-                                                    </div>
-
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group row">
-                                                                <label class="control-label text-right col-md-2">波段类型:</label>
-                                                                <div class="col-md-10">
-                                                                    <p class="form-control-static"> NULL </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>                                                       
-                                                    </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="Eccentricity">偏心率：</label>
+                                                    <input type="text" class="form-control " id="Eccentricity">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="Inclination">轨道倾角：</label>
+                                                    <input type="text" class="form-control " id="Inclination">
                                                     
-                                                </div>
-                                                                                                                                          
-                                                <hr class="m-t-0 m-b-40">
-                                                
+                                                </div>                              
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="Period">运行周期（minutes）：</label>
+                                                    <input type="text" class="form-control " id="Period">
+                                                    
+                                                </div>                              
                                             </div>
                                         </div>
-                                    </div>
-                                    
-                                    
-                                    <div class="form-actions">
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="row">
-                                                        <div class="col-md-offset-3 col-md-9">
-                                                            <p class="text-info">不想使用默认指标？</p>
-                                                            <button type="button" class="btn btn-danger" onclick="javascript:window.location.href='降雨指标新建.html'"> <i class="fa fa-pencil"></i> 新建降雨指标参数信息</button>
-                                                            
-                                                        </div>
-                                                    </div>
+                                    </section>
+                                    <!-- Step 4 -->
+                                    <h6>4、其他信息</h6>
+                                    <section>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="Expected Lifetime">预期寿命（years）:</label>
+                                                    <input type="text" class="form-control required" id="Expected Lifetime">
                                                 </div>
-                                                <div class="col-md-6"> </div>
+                                                <div class="form-group">
+                                                    <label for="price">卫星数据价格（元/平方公里）：</label>
+                                                    <input type="text" class="form-control required" id="price">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="isneeded">是否为项目所需卫星：</label>
+                                                    <select class="custom-select form-control required" id="isneeded" name="isneeded">
+                                                        <option value="">请选择</option>
+                                                        <option value="yes">是</option>
+                                                        <option value="no">否</option>
+                                                        
+                                                    </select>
+                                                </div>
                                             </div>
+                                            
                                         </div>
-                                    </div>
-                                </div>
-                            </form>
+                                    </section>
+                                </form>
+                            </div>
                         </div>
-                    </div>
+                    </div>                          
                 </div>
-                <!-- Row -->
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->
                 <!-- ============================================================== -->
@@ -1072,54 +810,54 @@
                             <div class="message-center chat-scroll">
                                 <a href="javascript:void(0)" class="message-item" id='chat_user_1' data-user-id='1'>
                                     <span class="user-img"> <img src="../../assets/images/users/1.jpg" alt="user" class="rounded-circle"> <span class="profile-status online pull-right"></span> </span>
-                                    <div class="mail-contnet">
-                                        <h5 class="message-title">Pavan kumar</h5> <span class="mail-desc">Just see the my admin!</span> <span class="time">9:30 AM</span> </div>
+                                    <span class="mail-contnet">
+                                        <h5 class="message-title">Pavan kumar</h5> <span class="mail-desc">Just see the my admin!</span> <span class="time">9:30 AM</span> </span>
                                 </a>
                                 <!-- Message -->
                                 <a href="javascript:void(0)" class="message-item" id='chat_user_2' data-user-id='2'>
                                     <span class="user-img"> <img src="../../assets/images/users/2.jpg" alt="user" class="rounded-circle"> <span class="profile-status busy pull-right"></span> </span>
-                                    <div class="mail-contnet">
-                                        <h5 class="message-title">Sonu Nigam</h5> <span class="mail-desc">I've sung a song! See you at</span> <span class="time">9:10 AM</span> </div>
+                                    <span class="mail-contnet">
+                                        <h5 class="message-title">Sonu Nigam</h5> <span class="mail-desc">I've sung a song! See you at</span> <span class="time">9:10 AM</span> </span>
                                 </a>
                                 <!-- Message -->
                                 <a href="javascript:void(0)" class="message-item" id='chat_user_3' data-user-id='3'>
                                     <span class="user-img"> <img src="../../assets/images/users/3.jpg" alt="user" class="rounded-circle"> <span class="profile-status away pull-right"></span> </span>
-                                    <div class="mail-contnet">
-                                        <h5 class="message-title">Arijit Sinh</h5> <span class="mail-desc">I am a singer!</span> <span class="time">9:08 AM</span> </div>
+                                    <span class="mail-contnet">
+                                        <h5 class="message-title">Arijit Sinh</h5> <span class="mail-desc">I am a singer!</span> <span class="time">9:08 AM</span> </span>
                                 </a>
                                 <!-- Message -->
                                 <a href="javascript:void(0)" class="message-item" id='chat_user_4' data-user-id='4'>
                                     <span class="user-img"> <img src="../../assets/images/users/4.jpg" alt="user" class="rounded-circle"> <span class="profile-status offline pull-right"></span> </span>
-                                    <div class="mail-contnet">
-                                        <h5 class="message-title">Nirav Joshi</h5> <span class="mail-desc">Just see the my admin!</span> <span class="time">9:02 AM</span> </div>
+                                    <span class="mail-contnet">
+                                        <h5 class="message-title">Nirav Joshi</h5> <span class="mail-desc">Just see the my admin!</span> <span class="time">9:02 AM</span> </span>
                                 </a>
                                 <!-- Message -->
                                 <!-- Message -->
                                 <a href="javascript:void(0)" class="message-item" id='chat_user_5' data-user-id='5'>
                                     <span class="user-img"> <img src="../../assets/images/users/5.jpg" alt="user" class="rounded-circle"> <span class="profile-status offline pull-right"></span> </span>
-                                    <div class="mail-contnet">
-                                        <h5 class="message-title">Sunil Joshi</h5> <span class="mail-desc">Just see the my admin!</span> <span class="time">9:02 AM</span> </div>
+                                    <span class="mail-contnet">
+                                        <h5 class="message-title">Sunil Joshi</h5> <span class="mail-desc">Just see the my admin!</span> <span class="time">9:02 AM</span> </span>
                                 </a>
                                 <!-- Message -->
                                 <!-- Message -->
                                 <a href="javascript:void(0)" class="message-item" id='chat_user_6' data-user-id='6'>
                                     <span class="user-img"> <img src="../../assets/images/users/6.jpg" alt="user" class="rounded-circle"> <span class="profile-status offline pull-right"></span> </span>
-                                    <div class="mail-contnet">
-                                        <h5 class="message-title">Akshay Kumar</h5> <span class="mail-desc">Just see the my admin!</span> <span class="time">9:02 AM</span> </div>
+                                    <span class="mail-contnet">
+                                        <h5 class="message-title">Akshay Kumar</h5> <span class="mail-desc">Just see the my admin!</span> <span class="time">9:02 AM</span> </span>
                                 </a>
                                 <!-- Message -->
                                 <!-- Message -->
                                 <a href="javascript:void(0)" class="message-item" id='chat_user_7' data-user-id='7'>
                                     <span class="user-img"> <img src="../../assets/images/users/7.jpg" alt="user" class="rounded-circle"> <span class="profile-status offline pull-right"></span> </span>
-                                    <div class="mail-contnet">
-                                        <h5 class="message-title">Pavan kumar</h5> <span class="mail-desc">Just see the my admin!</span> <span class="time">9:02 AM</span> </div>
+                                    <span class="mail-contnet">
+                                        <h5 class="message-title">Pavan kumar</h5> <span class="mail-desc">Just see the my admin!</span> <span class="time">9:02 AM</span> </span>
                                 </a>
                                 <!-- Message -->
                                 <!-- Message -->
                                 <a href="javascript:void(0)" class="message-item" id='chat_user_8' data-user-id='8'>
                                     <span class="user-img"> <img src="../../assets/images/users/8.jpg" alt="user" class="rounded-circle"> <span class="profile-status offline pull-right"></span> </span>
-                                    <div class="mail-contnet">
-                                        <h5 class="message-title">Varun Dhavan</h5> <span class="mail-desc">Just see the my admin!</span> <span class="time">9:02 AM</span> </div>
+                                    <span class="mail-contnet">
+                                        <h5 class="message-title">Varun Dhavan</h5> <span class="mail-desc">Just see the my admin!</span> <span class="time">9:02 AM</span> </span>
                                 </a>
                                 <!-- Message -->
                             </div>
@@ -1213,9 +951,198 @@
     <!--Menu sidebar -->
     <script src="../../dist/js/sidebarmenu.js"></script>
     <!--Custom JavaScript -->
-    <script src="../../dist/js/custom.min.js"></script>
-    <!-- This Page JS -->
-    <script src="../../assets/extra-libs/prism/prism.js"></script>
+    <script src="../../dist/js/custom.js"></script>
+    <script src="../../assets/libs/jquery-steps/build/jquery.steps.min.js"></script>
+    <script src="../../assets/libs/jquery-validation/dist/jquery.validate.min.js"></script>
+    <!--This page JavaScript -->
+    <script src="../../assets/extra-libs/treeview/dist/bootstrap-treeview.min.js"></script>
+    <script src="../../assets/extra-libs/treeview/dist/bootstrap-treeview-init.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+    //Basic Example
+    $("#example-basic").steps({
+        headerTag: "h3",
+        bodyTag: "section",
+        transitionEffect: "slideLeft",
+        autoFocus: true
+    });
+
+    // Basic Example with form
+    var form = $("#example-form");
+    form.validate({
+        errorPlacement: function errorPlacement(error, element) { element.before(error); },
+        rules: {
+            confirm: {
+                equalTo: "#password"
+            }
+        }
+    });
+    form.children("div").steps({
+        headerTag: "h3",
+        bodyTag: "section",
+        transitionEffect: "slideLeft",
+        onStepChanging: function(event, currentIndex, newIndex) {
+            form.validate().settings.ignore = ":disabled,:hidden";
+            return form.valid();
+        },
+        onFinishing: function(event, currentIndex) {
+            form.validate().settings.ignore = ":disabled";
+            return form.valid();
+        },
+        onFinished: function(event, currentIndex) {
+            alert("Submitted!");
+        }
+    });
+
+    // Advance Example
+
+    var form = $("#example-advanced-form").show();
+
+    form.steps({
+        headerTag: "h3",
+        bodyTag: "fieldset",
+        transitionEffect: "slideLeft",
+        onStepChanging: function(event, currentIndex, newIndex) {
+            // Allways allow previous action even if the current form is not valid!
+            if (currentIndex > newIndex) {
+                return true;
+            }
+            // Forbid next action on "Warning" step if the user is to young
+            if (newIndex === 3 && Number($("#age-2").val()) < 18) {
+                return false;
+            }
+            // Needed in some cases if the user went back (clean up)
+            if (currentIndex < newIndex) {
+                // To remove error styles
+                form.find(".body:eq(" + newIndex + ") label.error").remove();
+                form.find(".body:eq(" + newIndex + ") .error").removeClass("error");
+            }
+            form.validate().settings.ignore = ":disabled,:hidden";
+            return form.valid();
+        },
+        onStepChanged: function(event, currentIndex, priorIndex) {
+            // Used to skip the "Warning" step if the user is old enough.
+            if (currentIndex === 2 && Number($("#age-2").val()) >= 18) {
+                form.steps("next");
+            }
+            // Used to skip the "Warning" step if the user is old enough and wants to the previous step.
+            if (currentIndex === 2 && priorIndex === 3) {
+                form.steps("previous");
+            }
+        },
+        onFinishing: function(event, currentIndex) {
+            form.validate().settings.ignore = ":disabled";
+            return form.valid();
+        },
+        onFinished: function(event, currentIndex) {
+            alert("Submitted!");
+        }
+    }).validate({
+        errorPlacement: function errorPlacement(error, element) { element.before(error); },
+        rules: {
+            confirm: {
+                equalTo: "#password-2"
+            }
+        }
+    });
+
+    // Dynamic Manipulation
+    $("#example-manipulation").steps({
+        headerTag: "h3",
+        bodyTag: "section",
+        enableAllSteps: true,
+        enablePagination: false
+    });
+
+    //Vertical Steps
+
+    $("#example-vertical").steps({
+        headerTag: "h3",
+        bodyTag: "section",
+        transitionEffect: "slideLeft",
+        stepsOrientation: "vertical"
+    });
+
+    //Custom design form example
+    $(".tab-wizard").steps({
+        headerTag: "h6",
+        bodyTag: "section",
+        transitionEffect: "fade",
+        titleTemplate: '<span class="step">#index#</span> #title#',
+        labels: {
+            finish: "Submit"
+        },
+        onFinished: function(event, currentIndex) {
+            swal("Form Submitted!", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lorem erat eleifend ex semper, lobortis purus sed.");
+
+        }
+    });
+
+
+    var form = $(".validation-wizard").show();
+
+    $(".validation-wizard").steps({
+        headerTag: "h6",
+        bodyTag: "section",
+        transitionEffect: "fade",
+        titleTemplate: '<span class="step">#index#</span> #title#',
+        labels: {
+            previous:"上一步",
+            next:"下一步",
+            finish: "完成"
+        },
+        /*onStepChanging: function (event, currentIndex, newIndex)
+        {
+            form.validate().settings.ignore = ":disabled,:hidden";
+            return form.valid();
+        },
+        onFinishing: function (event, currentIndex)
+        {
+            form.validate().settings.ignore = ":disabled";
+            return form.valid();
+        },*/
+        
+        onFinished: function (event, currentIndex)
+        {
+            swal({
+
+                title: "已完成！",
+                text: "接下来开始搭载传感器",
+                icon: "success",
+                buttons: {
+                    go: "完成该平台建模",
+                }
+                   
+                })
+                .then((value) => {
+                    switch (value) {
+
+ 
+                        case "go":
+                            document.getElementById("showdetail").style.display = 'block' ;         
+                            document.getElementById("observationmodel").style.display = 'none' ;
+                        break;
+
+                       
+                    }
+                    });
+                
+        }
+    }), $(".validation-wizard").validate({
+        ignore: "input[type=hidden]",
+        errorClass: "text-danger",
+        successClass: "text-success",
+        highlight: function(element, errorClass) {
+            $(element).removeClass(errorClass)
+        },
+        unhighlight: function(element, errorClass) {
+            $(element).removeClass(errorClass)
+        },
+        errorPlacement: function(error, element) {
+            error.insertAfter(element)
+        }
+    })
+    </script>
 </body>
 
 </html>

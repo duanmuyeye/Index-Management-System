@@ -2,51 +2,40 @@ $(function() {
 
         var defaultData = [
           {
-            text: 'Parent 1',
+            text: 'Fengyun-1',
             href: '#parent1',
-            tags: ['4'],
+            tags: ['0'],
             nodes: [
               {
-                text: 'Child 1',
+                text: '传感器1',
                 href: '#child1',
-                tags: ['2'],
-                nodes: [
-                  {
-                    text: 'Grandchild 1',
-                    href: '/index.html',
-                    tags: ['0']
-                  },
-                  {
-                    text: 'Grandchild 2',
-                    href: '#grandchild2',
-                    tags: ['0']
-                  }
-                ]
+                tags: ['1'],
+                
               },
               {
-                text: 'Child 2',
+                text: '传感器2',
                 href: '#child2',
-                tags: ['0']
+                tags: ['1']
               }
             ]
           },
           {
-            text: 'Parent 2',
+            text: 'Fengyun-2',
             href: '#parent2',
             tags: ['0']
           },
           {
-            text: 'Parent 3',
+            text: 'GF-1',
             href: '#parent3',
-             tags: ['0']
+            tags: ['0']
           },
           {
-            text: 'Parent 4',
+            text: 'Beijing-2',
             href: '#parent4',
             tags: ['0']
           },
           {
-            text: 'Parent 5',
+            text: 'GF-5',
             href: '#parent5'  ,
             tags: ['0']
           }
@@ -189,9 +178,14 @@ $(function() {
           data: defaultData,
           onNodeSelected:function(event, data) {
           var node= $('#treeview5').treeview('getSelected');
-          document.getElementById("showdetail").style.display = 'block' ;
+          if(node[0].tags=='0'){
+            document.getElementById("showdetail").style.display = 'block' ;
+            document.getElementById("preview_name").innerText=node[0].text;
           
-          document.getElementById("observationmodel").style.display = 'none' ;
+            document.getElementById("observationmodel").style.display = 'none' ;
+
+          }
+          
           
         }
 

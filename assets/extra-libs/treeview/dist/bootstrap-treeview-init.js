@@ -183,6 +183,10 @@ $(function() {
             document.getElementById("preview_name").innerText=node[0].text;
           
             document.getElementById("observationmodel").style.display = 'none' ;
+            document.getElementById("framesensor").style.display='none';
+            document.getElementById("scannersensor").style.display = 'none' ;
+            document.getElementById("radarsensor").style.display='none';
+            document.getElementById("nonimagingsensor").style.display='none';
 
           }
           

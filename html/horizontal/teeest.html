@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <title>无标题文档</title>
+    <script src="../../assets/libs/jquery/dist/jquery.min.js"></script>
+        <!-- Bootstrap tether Core JavaScript -->
+    <script src="../../assets/libs/popper.js/dist/umd/popper.min.js"></script>
+    <script src="../../assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+    <link href="../../dist/css/style.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+        .dropdown-submenu {
+            position: relative;
+        }
+        .dropdown-submenu > .dropdown-menu {
+            top: 0;
+            left: 100%;
+            margin-top: -6px;
+            margin-left: -1px;
+            -webkit-border-radius: 0 6px 6px 6px;
+            -moz-border-radius: 0 6px 6px;
+            border-radius: 0 6px 6px 6px;
+        }
+        .dropdown-submenu:hover > .dropdown-menu {
+            display: block;
+        }
+        .dropdown-submenu > a:after {
+            display: block;
+            content: " ";
+            float: right;
+            width: 0;
+            height: 0;
+            border-color: transparent;
+            border-style: solid;
+            border-width: 5px 0 5px 5px;
+            border-left-color: #ccc;
+            margin-top: 5px;
+            margin-right: -10px;
+        }
+        .dropdown-submenu:hover > a:after {
+            border-left-color: #fff;
+        }
+        .dropdown-submenu.pull-left {
+            float: none;
+        }
+        .dropdown-submenu.pull-left > .dropdown-menu {
+            left: -100%;
+            margin-left: 10px;
+            -webkit-border-radius: 6px 0 6px 6px;
+            -moz-border-radius: 6px 0 6px 6px;
+            border-radius: 6px 0 6px 6px;
+        }
+    </style>
+</head>
+ 
+<body>
+
+<li class="dropdown">
+    <a href="#" class="btn btn-large" data-toggle="dropdown">cyan111<i class="caret"></i></a>
+    <ul class="dropdown-menu">
+        <li><a href="#">qiao1</a></li>
+        <li><a href="#">qiao2</a></li>
+        <li><a href="#">qiao3</a></li>
+    </ul>
+</li>
+<button class="dropdown">
+    <a href="#" class="btn btn-large" data-toggle="dropdown">cyan222<i class="caret"></i></a>
+    <ul class="dropdown-menu">
+        <li><a href="#">gao1</a></li>
+        <li><a href="#">gao2</a></li>
+        <li class="dropdown-submenu"> <a href="#">gao3</a>
+             <ul class="dropdown-menu pull-right">
+                  <li><a href="#">qiao1</a></li>
+                  <li><a href="#">qiao2</a></li>
+                  <li><a href="#">qiao3</a></li>
+             </ul>
+        </li>
+    </ul>
+</button>
+
+<div class="dropup">
+    <a href="#" class="btn btn-large" data-toggle="dropdown">cyan333<i class="caret"></i></a>
+    <ul class="dropdown-menu">
+        <li><a href="#">chao1</a></li>
+        <li><a href="#">chao2</a></li>
+        <li><a href="#">chao3</a></li>
+    </ul>
+</div>
+</body>
+</html>

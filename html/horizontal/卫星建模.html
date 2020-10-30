@@ -14,13 +14,62 @@
     <!-- This page CSS -->
     <link href="../../assets/libs/jquery-steps/jquery.steps.css" rel="stylesheet">
     <link href="../../assets/libs/jquery-steps/steps.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../../assets/extra-libs/prism/prism.css">
     <!-- Custom CSS -->
     <link href="../../dist/css/style.min.css" rel="stylesheet">
+    
+    <link href="../../assets/libs/nouislider/distribute/nouislider.min.css" rel="stylesheet">
+    <link href="../../assets/extra-libs/nouislider/palette-noui.css" rel="stylesheet">
+    <link href="../../assets/extra-libs/nouislider/noui-slider.min.css" rel="stylesheet">
+    <style type="text/css">
+        .dropdown-submenu {
+            position: relative;
+        }
+        .dropdown-submenu > .dropdown-menu {
+            top: 0;
+            left: 100%;
+            margin-top: -6px;
+            margin-left: -1px;
+            -webkit-border-radius: 0 6px 6px 6px;
+            -moz-border-radius: 0 6px 6px;
+            border-radius: 0 6px 6px 6px;
+        }
+        .dropdown-submenu:hover > .dropdown-menu {
+            display: block;
+        }
+        .dropdown-submenu > a:after {
+            display: block;
+            content: " ";
+            float: right;
+            width: 0;
+            height: 0;
+            border-color: transparent;
+            border-style: solid;
+            border-width: 5px 0 5px 5px;
+            border-left-color: #ccc;
+            margin-top: 5px;
+            margin-right: -10px;
+        }
+        .dropdown-submenu:hover > a:after {
+            border-left-color: #fff;
+        }
+        .dropdown-submenu.pull-left {
+            float: none;
+        }
+        .dropdown-submenu.pull-left > .dropdown-menu {
+            left: -100%;
+            margin-left: 10px;
+            -webkit-border-radius: 6px 0 6px 6px;
+            -moz-border-radius: 6px 0 6px 6px;
+            border-radius: 6px 0 6px 6px;
+        }
+    </style>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    
 <![endif]-->
 </head>
 
@@ -441,6 +490,7 @@
                             </div>
                         </div>
                     </div>
+                
                     
                     
                     <!-- ============================================================== -->
@@ -496,10 +546,32 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group row">
-                                                    <div class="col-md-9"></div>
-                                                    <div class="col-md-3">
-                                                        <button type="button" class="btn waves-effect waves-light btn-rounded btn-primary">添加负载传感器</button>
+                                                    <div class="col-md-9">
+
                                                     </div>
+                                                    
+                                                    <div class="col-md-3">
+                                                        
+                                                        <button type="button" class="btn btn-info dropdown-toggle btn-rounded " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                            添加负载传感器
+                                                        </button>
+                                                        
+                                                        <div class="dropdown-menu">
+                                                            <li class="dropdown-submenu dropdown-item "><a style="color: black;" href="javascript:void(0);">添加成像类型传感器</a>
+                                                                <ul class="dropdown-menu pull-right">
+                                                                        <li><a class="dropdown-item"  href="javascript:void(0);" onclick="gotoframesensor()">摄影成像类型传感器</a></li>
+                                                                        <li><a class="dropdown-item" href="javascript:void(0);" onclick="gotoscannersensor()">扫描成像类型传感器</a></li>
+                                                                        <li><a class="dropdown-item" href="javascript:void(0);" onclick="gotoradarsensor()">雷达成像类型传感器</a></li>
+                                                                </ul>
+                                                            </li>
+                                                            <li><a class="dropdown-item" href="javascript:void(0);" onclick="gotononimagingsensor()">添加非成像类型传感器</a></li>
+                                                            
+                                                        </div>
+                                                        
+                                                        
+                                                        
+                                                    </div>
+                                                    
                                                 </div>
                                             </div>                                                       
                                         </div>
@@ -512,15 +584,383 @@
                             
                         </div>
                     </div>
-                    <div class="col-9" id="observationmodel">
+                    
+                    <div class="col-9" id="scannersensor" style="display: none;">
+                        
+                        <div class="card">
+                            <div class="card-body wizard-content">
+                                
+                                <h6 class="card-subtitle">扫描成像类型传感器-----请按步骤进行操作，带'<span class="danger" style="color: red;">*</span>'为必选项</h6>
+                                <form action="#" class="validation-wizard wizard-circle m-t-40" id="scannersensor_form">
+                                    <!-- Step 1 -->
+                                    <h6>1、基本信息</h6>
+                                    <section>
+                                        
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="scanner_sensorname"> 传感器名称:<span class="danger" style="color: red;">*</span> </label>
+                                                    <input type="text" class="form-control required" id="scanner_sensorname" name="scanner_sensorname"> </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="scanner_uid"> 唯一标识码:<span class="danger" style="color: red;">*</span> </label>
+                                                    <input type="text" class="form-control required" id="scanner_uid" name="scanner_uid"> </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="scanner_sensortype"> 传感器类型:<span class="danger" style="color: red;">*</span> </label>
+                                                    <input type="text" class="form-control required" id="scanner_sensortype" name="scanner_sensortype"> </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="scanner_shortname">传感器简称:</label>
+                                                    <input type="tel" class="form-control" id="scanner_shortname" name="scanner_shortname"> </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="scanner_scantype"> 扫描类型:<span class="danger" style="color: red;">*</span> </label>
+                                                    <select class="custom-select form-control required" style="height: 34px;" id="scanner_scantype" name="scanner_scantype">
+                                                        <option value="">请选择</option>
+                                                        <option value="摆扫式">摆扫式</option>
+                                                        <option value="推扫式">推扫式</option>
+                                                        
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="scanner_purpose">用途:</label>
+                                                    <input type="text" class="form-control" id="scanner_purpose" name="scanner_purpose"> </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="scanner_application"> 预期应用:<span class="danger" style="color: red;">*</span> </label>
+                                                    <input type="text" class="form-control required" id="scanner_application" name="scanner_application"> </div>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-md-12">
+                                                <label for="scanner_description"> 传感器信息描述:</label>
+                                                <textarea class="form-control" id="scanner_description"  name="scanner_description" rows="3" style="margin-top: 0px; margin-bottom: 0px; height: 128px;"></textarea>
+                                            </div>
+                                        </div>
+                                        
+                                        
+                                    </section>
+                                    <!-- Step 2 -->
+                                    <h6>2、物理特征</h6>
+                                    <section>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="scanner_length">传感器长度（m）</label>
+                                                    <input type="text" class="form-control " id="scanner_length" name="scanner_length">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="scanner_width">传感器宽度（m）</label>
+                                                    <input type="text" class="form-control " id="scanner_width" name="scanner_width">
+                                                </div>
+
+                                               
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="scanner_height">传感器高度（m）</label>
+                                                    <input type="text" class="form-control " id="scanner_height" name="scanner_height">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="scanner_weight">传感器质量（kg）</label>
+                                                    <input type="text" class="form-control " id="scanner_weight" name="scanner_weight">
+                                                </div>
+                                            </div>
+                                            
+                                           
+                                            
+                                        </div>
+                                    </section>
+                                    <!-- Step 3 -->
+                                    <h6>3、能力信息</h6>
+                                    <section>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="scanner_resolution">地面分辨率(m)：<span class="danger" style="color: red;">*</span></label>
+                                                    <div class="form-group">
+                                                        <div id="nonlinear" class="m-t-15 m-b-15"></div>
+                                                        <span id="lower-value"></span>
+                                                        <span id="upper-value"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="scanner_FOV">视场角(deg):</label>
+                                                    <input type="text" class="form-control" id="scanner_FOV" name="scanner_FOV"> 
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="scanner_Swatch Width">成像宽度(km):</label>
+                                                    <input type="text" class="form-control" id="scanner_Swatch Width" name="scanner_Swatch Width"> 
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="scanner_sideawayangle">侧摆角(deg):</label>
+                                                    <input type="text" class="form-control " id="scanner_sideawayangle" name="scanner_sideawayangle">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">                                    
+                                                <div class="form-group">
+                                                    <label for="scanner_IFOV">瞬时视场角(deg):</label>
+                                                    <input type="text" class="form-control " id="scanner_IFOV" name="scanner_IFOV">
+                                                    
+                                                </div>
+                                            </div> 
+                                            <div class="col-md-6"> 
+                                                <div class="form-group">
+                                                    <label for="scanner_Quantification_level">量化等级：</label>
+                                                    <input type="text" class="form-control " id="scanner_Quantification_level" name="scanner_Quantification_level">
+                                         
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="scanner_nadirResolution">星下点分辨率：</label>
+                                                    <input type="text" class="form-control " id="scanner_nadirResolution" name="scanner_nadirResolution">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="scanner_geolocationAccuracy">地理定位精度(m):</label>
+                                                    <input type="text" class="form-control " id="scanner_geolocationAccuracy" name="scanner_geolocationAccuracy">
+                                                    
+                                                </div>                              
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="scanner_angleAccuracy">角度精度(deg):</label>
+                                                    <input type="text" class="form-control " id="scanner_angleAccuracy" name="scanner_angleAccuracy">
+                                                    
+                                                </div>                              
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="scanner_distanceAccuracy">距离精度(m):</label>
+                                                    <input type="text" class="form-control " id="scanner_distanceAccuracy" name="scanner_distanceAccuracy">
+                                                    
+                                                </div>                              
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="scanner_radiationAccuracy">辐射精度:</label>
+                                                    <input type="text" class="form-control " id="scanner_radiationAccuracy" name="scanner_radiationAccuracy">
+                                                    
+                                                </div>                              
+                                            </div>
+                                            <div class="col-md-6"></div>
+
+                                            
+                                                                                                                               
+                                                                                       
+                                            
+                                            
+
+                                            <div class="col-lg-12">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h4 class="card-title">观测波段特征</h4>
+                                                        
+                                                        <h6 class="card-subtitle"><code>点击添加按钮向表中添加波段信息。</code></h6>
+                                                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal" data-whatever="@fat">添加</button> 
+                                                        <div class="table-responsive">
+                                                            <table class="table table-hover table-info">
+                                                                <thead class="bg-info text-white">
+                                                                    <tr>
+                                                                        <th scope="col">波段名称</th>
+                                                                        <th scope="col">波段宽度</th>
+                                                                        <th scope="col">光谱分辨率</th>
+                                                                        <th scope="col">辐射分辨率</th>
+                                                                        <th scope="col">应用</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td >1</td>
+                                                                        <td>Mark</td>
+                                                                        <td>Otto</td>
+                                                                        <td>@mdo</td>
+                                                                        <td>@md111111111111111111111111111111111111111111o</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td >1</td>
+                                                                        <td>Mark</td>
+                                                                        <td>Otto</td>
+                                                                        <td>@mdo</td>
+                                                                        <td>@md111111111111111111111111111111111111111111o</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td >1</td>
+                                                                        <td>Mark</td>
+                                                                        <td>Otto</td>
+                                                                        <td>@mdo</td>
+                                                                        <td>@md111111111111111111111111111111111111111111o</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title" id="exampleModalLabel1">添加波段信息</h4>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            
+                                                            <div class="form-group">
+                                                                <label for="scanner_bandname" class="control-label">波段名称:</label>
+                                                                <input type="text" class="form-control" id="recipient-name1">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="message-text" class="control-label">Message:</label>
+                                                                <textarea class="form-control" id="message-text1"></textarea>
+                                                            </div>
+                                                            
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                                            <button type="button" class="btn btn-primary">添加</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                    <!-- Step 4 -->
+                                    <h6>4、联系服务信息</h6>
+                                    <section>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="scanner_arcrole">负责角色:</label>
+                                                    <select class="custom-select form-control " style="height: 34px;" id="scanner_arcrole" name="scanner_arcrole">
+                                                        <option value="">请选择</option>
+                                                        <option value="manufacturer">制造商</option>
+                                                        <option value="manager">管理者</option>
+                                                        <option value="user">使用者</option>
+                                                        
+                                                    </select>
+                                                </div>
+                                            </div> 
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="scanner_organisationName">组织名称：</label>
+                                                    <input type="text" class="form-control" id="scanner_organisationName" name="scanner_organisationName">
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="scanner_individualName">个人名称：</label>
+                                                    <input type="text" class="form-control" id="scanner_individualName" name="scanner_individualName">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                
+                                                    <label for="scanner_contact">联系信息</label>
+                                                    
+                                            
+                                            </div>
+                                            
+                                               
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="scanner_CI_Telephone">电话：</label>
+                                                    <input type="text" class="form-control" id="scanner_CI_Telephone" name="scanner_CI_Telephone">
+                                                </div>
+                                            </div>
+
+                                           
+                                            
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="scanner_country">国家：</label>
+                                                    <input type="text" class="form-control" id="scanner_country" name="scanner_country">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="scanner_city">城市：</label>
+                                                    <input type="text" class="form-control" id="scanner_city" name="scanner_city">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="scanner_administrativeArea">行政区域：</label>
+                                                    <input type="text" class="form-control" id="scanner_administrativeArea" name="scanner_administrativeArea">
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="scanner_CI_Address">邮寄地址：</label>
+                                                    <input type="text" class="form-control" id="scanner_CItelephone" name="scanner_CItelephone">
+                                                </div>
+                                            </div>
+                                            
+                                                
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="scanner_postalCode">邮政编码：</label>
+                                                    <input type="text" class="form-control" id="scanner_postalCode" name="scanner_postalCode">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="scanner_electronicMailAddress">电子邮箱</label>
+                                                    <input type="email" class="form-control" id="scanner_electronicMailAddress" name="scanner_electronicMailAddress">
+                                                </div>
+                                            </div>
+                                            
+                                                                                       
+                                        </div>
+                                    </section>
+                                </form>
+                            </div>
+                        </div>
+                        
+                    </div>  
+                    <div class="col-9" id="observationmodel" >
                         <div class="card">
                             <div class="card-body wizard-content">
                                 
                                 <h6 class="card-subtitle">请按步骤进行操作，带'<span class="danger" style="color: red;">*</span>'为必选项</h6>
-                                <form action="#" class="validation-wizard wizard-circle m-t-40">
+                                <form action="#" class="validation-wizard2 wizard-circle m-t-40">
                                     <!-- Step 1 -->
                                     <h6>1、基本信息</h6>
                                     <section>
+                                        
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
@@ -549,7 +989,539 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="wlocation2"> 使用者:<span class="danger" style="color: red;">*</span> </label>
-                                                    <select class="custom-select form-control required" id="wlocation2" name="location">
+                                                    <select class="custom-select form-control required" style="height: 34px;" id="wlocation2" name="location">
+                                                        <option value="">请选择</option>
+                                                        <option value="政府">政府</option>
+                                                        <option value="商用">商用</option>
+                                                        
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="wdate2">发射日期:</label>
+                                                    <input type="date" class="form-control" id="wdate2"> </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="application"> 预期应用:<span class="danger" style="color: red;">*</span> </label>
+                                                    <input type="text" class="form-control required" id="application" name="firstName2"> </div>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-md-12">
+                                                <label for="description"> 卫星平台信息描述:</label>
+                                                <textarea class="form-control" id="description" rows="3" style="margin-top: 0px; margin-bottom: 0px; height: 128px;"></textarea>
+                                            </div>
+                                        </div>
+                                        
+                                        
+                                    </section>
+                                    <!-- Step 2 -->
+                                    <h6>2、位置信息</h6>
+                                    <section>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="noradid">NORAD NUMBER:<span class="danger" style="color: red;">*</span></label>
+                                                    <input type="text" class="form-control required" id="noradid">
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                    </section>
+                                    <!-- Step 3 -->
+                                    <h6>3、轨道信息</h6>
+                                    <section>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="Class of Orbit">轨道种类：</label>
+                                                    <input type="text" class="form-control " id="Class of Orbit"> 
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="Type of Orbit">轨道类型：</label>
+                                                    <input type="text" class="form-control" id="Type of Orbit"> 
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="Repeat Cycle">重复周期（天）：</label>
+                                                    <input type="text" class="form-control" id="Repeat Cycle"> 
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="Alt">轨道高程(km)：</label>
+                                                    <input type="text" class="form-control " id="Alt">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">                                    
+                                                <div class="form-group">
+                                                    <label for="Perigee">近地点高度（km）：</label>
+                                                    <input type="text" class="form-control " id="Perigee">
+                                                    
+                                                </div>
+                                            </div> 
+                                            <div class="col-md-6"> 
+                                                <div class="form-group">
+                                                    <label for="Apogee">远地点高度（km）：</label>
+                                                    <input type="text" class="form-control " id="Apogee">
+                                         
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="Eccentricity">偏心率：</label>
+                                                    <input type="text" class="form-control " id="Eccentricity">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="Inclination">轨道倾角(deg)：</label>
+                                                    <input type="text" class="form-control " id="Inclination">
+                                                    
+                                                </div>                              
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="Period">运行周期（minutes）：</label>
+                                                    <input type="text" class="form-control " id="Period">
+                                                    
+                                                </div>                              
+                                            </div>
+                                        </div>
+                                    </section>
+                                    <!-- Step 4 -->
+                                    <h6>4、其他信息</h6>
+                                    <section>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="isneeded">是否为项目所需卫星：<span class="danger" style="color: red;">*</span></label>
+                                                    <select class="custom-select form-control required " style="height: 34px;" id="isneeded" name="isneeded">
+                                                        <option value="">请选择</option>
+                                                        <option value="yes">是</option>
+                                                        <option value="no">否</option>
+                                                        
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="Expected Lifetime">预期寿命（years）:</label>
+                                                    <input type="text" class="form-control " id="Expected Lifetime">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="price">卫星数据价格（元/平方公里）：</label>
+                                                    <input type="text" class="form-control " id="price">
+                                                </div>
+                                                
+                                            </div>
+                                            
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="satellite_dataAccessLevel">数据获取等级：<span class="danger" style="color: red;">*</span></label>
+                                                    <select class="custom-select form-control required " style="height: 34px;" id="satellite_dataAccessLevel" name="satellite_dataAccessLevel">
+                                                        <option value="">请选择</option>
+                                                        <option value="公开">公开</option>
+                                                        <option value="限制">限制</option>
+                                                        
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="satellite_dataQualityLevel">数据质量等级:</label>
+                                                    <input type="text" class="form-control" id="satellite_dataQualityLevel" name="satellite_dataQualityLevel">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="satellite_dataFormat">数据获取格式：</label>
+                                                    <input type="text" class="form-control" id="satellite_dataFormat" name="satellite_dataFormat">
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                    </section>
+                                </form>
+                            </div>
+                        </div>
+                    </div>   
+                    <div class="col-9" id="framesensor" style="display: none;">
+                        <div class="card">
+                            <div class="card-body wizard-content">
+                                
+                                <h6 class="card-subtitle">摄影成像类型传感器-----请按步骤进行操作，带'<span class="danger" style="color: red;">*</span>'为必选项</h6>
+                                <form action="#" class="validation-wizard3 wizard-circle m-t-40">
+                                    <!-- Step 1 -->
+                                    <h6>1、基本信息</h6>
+                                    <section>
+                                        
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="scanner_sensorname"> 传感器名称:<span class="danger" style="color: red;">*</span> </label>
+                                                    <input type="text" class="form-control required" id="scanner_sensorname" name="scanner_sensorname"> </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="scanner_uid"> 唯一标识码:<span class="danger" style="color: red;">*</span> </label>
+                                                    <input type="text" class="form-control required" id="scanner_uid" name="scanner_uid"> </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="scanner_sensortype"> 传感器类型:<span class="danger" style="color: red;">*</span> </label>
+                                                    <input type="text" class="form-control required" id="scanner_sensortype" name="scanner_sensortype"> </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="scanner_shortname">传感器简称:</label>
+                                                    <input type="tel" class="form-control" id="scanner_shortname" name="scanner_shortname"> </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="scanner_scantype"> 扫描类型:<span class="danger" style="color: red;">*</span> </label>
+                                                    <select class="custom-select form-control required" style="height: 34px;" id="scanner_scantype" name="scanner_scantype">
+                                                        <option value="">请选择</option>
+                                                        <option value="摆扫式">摆扫式</option>
+                                                        <option value="推扫式">推扫式</option>
+                                                        
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="scanner_purpose">用途:</label>
+                                                    <input type="text" class="form-control" id="scanner_purpose" name="scanner_purpose"> </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="scanner_application"> 预期应用:<span class="danger" style="color: red;">*</span> </label>
+                                                    <input type="text" class="form-control required" id="scanner_application" name="scanner_application"> </div>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-md-12">
+                                                <label for="scanner_description"> 传感器信息描述:</label>
+                                                <textarea class="form-control" id="scanner_description"  name="scanner_description" rows="3" style="margin-top: 0px; margin-bottom: 0px; height: 128px;"></textarea>
+                                            </div>
+                                        </div>
+                                        
+                                        
+                                    </section>
+                                    <!-- Step 2 -->
+                                    <h6>2、物理特征</h6>
+                                    <section>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="scanner_length">传感器长度（m）</label>
+                                                    <input type="text" class="form-control " id="scanner_length" name="scanner_length">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="scanner_width">传感器宽度（m）</label>
+                                                    <input type="text" class="form-control " id="scanner_width" name="scanner_width">
+                                                </div>
+
+                                               
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="scanner_height">传感器高度（m）</label>
+                                                    <input type="text" class="form-control " id="scanner_height" name="scanner_height">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="scanner_weight">传感器质量（kg）</label>
+                                                    <input type="text" class="form-control " id="scanner_weight" name="scanner_weight">
+                                                </div>
+                                            </div>
+                                            
+                                           
+                                            
+                                        </div>
+                                    </section>
+                                    <!-- Step 3 -->
+                                    <h6>3、能力信息</h6>
+                                    <section>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="scanner_resolution">地面分辨率(m)：<span class="danger" style="color: red;">*</span></label>
+                                                    <div class="form-group">
+                                                        <div id="nonlinear" class="m-t-15 m-b-15"></div>
+                                                        <span id="lower-value"></span>
+                                                        <span id="upper-value"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="scanner_FOV">视场角(deg):</label>
+                                                    <input type="text" class="form-control" id="scanner_FOV" name="scanner_FOV"> 
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="scanner_Swatch Width">成像宽度(km):</label>
+                                                    <input type="text" class="form-control" id="scanner_Swatch Width" name="scanner_Swatch Width"> 
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="scanner_sideawayangle">侧摆角(deg):</label>
+                                                    <input type="text" class="form-control " id="scanner_sideawayangle" name="scanner_sideawayangle">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">                                    
+                                                <div class="form-group">
+                                                    <label for="scanner_IFOV">瞬时视场角(deg):</label>
+                                                    <input type="text" class="form-control " id="scanner_IFOV" name="scanner_IFOV">
+                                                    
+                                                </div>
+                                            </div> 
+                                            <div class="col-md-6"> 
+                                                <div class="form-group">
+                                                    <label for="scanner_Quantification_level">量化等级：</label>
+                                                    <input type="text" class="form-control " id="scanner_Quantification_level" name="scanner_Quantification_level">
+                                         
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="scanner_nadirResolution">星下点分辨率：</label>
+                                                    <input type="text" class="form-control " id="scanner_nadirResolution" name="scanner_nadirResolution">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="scanner_geolocationAccuracy">地理定位精度(m):</label>
+                                                    <input type="text" class="form-control " id="scanner_geolocationAccuracy" name="scanner_geolocationAccuracy">
+                                                    
+                                                </div>                              
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="scanner_angleAccuracy">角度精度(deg):</label>
+                                                    <input type="text" class="form-control " id="scanner_angleAccuracy" name="scanner_angleAccuracy">
+                                                    
+                                                </div>                              
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="scanner_distanceAccuracy">距离精度(m):</label>
+                                                    <input type="text" class="form-control " id="scanner_distanceAccuracy" name="scanner_distanceAccuracy">
+                                                    
+                                                </div>                              
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="scanner_radiationAccuracy">辐射精度:</label>
+                                                    <input type="text" class="form-control " id="scanner_radiationAccuracy" name="scanner_radiationAccuracy">
+                                                    
+                                                </div>                              
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                
+                                                <label >观测波段特征</label>
+                                                
+                                                
+                                                                                                                               
+                                                                             
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                
+                                                <table class="table table-hover ">
+                                                    <thead class="bg-info text-white">
+                                                        <tr>
+                                                            <th style="width: 90px; height: 54px;">波段名称</th>
+                                                            <th style="width: 90px; height: 54px;">波段范围</th>
+                                                            <th style="width: 90px; height: 54px;">光谱分辨率</th>
+                                                            <th style="width: 90px; height: 54px;">辐射分辨率</th>
+                                                            <th>应用</th>                                                               
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody >
+                                                        <tr>
+                                                            <td>1</td>
+                                                            <td>Nigam</td>
+                                                            <td>Eichmann</td>
+                                                            <td>@Sonu</td>
+                                                            <td>@So钱钱钱钱钱钱钱钱钱钱钱钱钱钱钱钱钱钱钱强强强强强强强强强强强强强强强强强强强强强强nu</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>2</td>
+                                                            <td>Deshmukh</td>
+                                                            <td>Prohaska</td>
+                                                            <td>@Genelia</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>3</td>
+                                                            <td>Roshan</td>
+                                                            <td>Rogahn</td>
+                                                            <td>@Hritik</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                                        
+                                            </div>
+                                        </div>
+                                    </section>
+                                    <!-- Step 4 -->
+                                    <h6>4、联系服务信息</h6>
+                                    <section>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="scanner_arcrole">负责角色:</label>
+                                                    <select class="custom-select form-control " style="height: 34px;" id="scanner_arcrole" name="scanner_arcrole">
+                                                        <option value="">请选择</option>
+                                                        <option value="manufacturer">制造商</option>
+                                                        <option value="manager">管理者</option>
+                                                        <option value="user">使用者</option>
+                                                        
+                                                    </select>
+                                                </div>
+                                            </div> 
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="scanner_organisationName">组织名称：</label>
+                                                    <input type="text" class="form-control" id="scanner_organisationName" name="scanner_organisationName">
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="scanner_individualName">个人名称：</label>
+                                                    <input type="text" class="form-control" id="scanner_individualName" name="scanner_individualName">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                
+                                                    <label for="scanner_contact">联系信息</label>
+                                                    
+                                            
+                                            </div>
+                                            
+                                               
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="scanner_CI_Telephone">电话：</label>
+                                                    <input type="text" class="form-control" id="scanner_CI_Telephone" name="scanner_CI_Telephone">
+                                                </div>
+                                            </div>
+
+                                           
+                                            
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="scanner_country">国家：</label>
+                                                    <input type="text" class="form-control" id="scanner_country" name="scanner_country">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="scanner_city">城市：</label>
+                                                    <input type="text" class="form-control" id="scanner_city" name="scanner_city">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="scanner_administrativeArea">行政区域：</label>
+                                                    <input type="text" class="form-control" id="scanner_administrativeArea" name="scanner_administrativeArea">
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="scanner_CI_Address">邮寄地址：</label>
+                                                    <input type="text" class="form-control" id="scanner_CItelephone" name="scanner_CItelephone">
+                                                </div>
+                                            </div>
+                                            
+                                                
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="scanner_postalCode">邮政编码：</label>
+                                                    <input type="text" class="form-control" id="scanner_postalCode" name="scanner_postalCode">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="scanner_electronicMailAddress">电子邮箱</label>
+                                                    <input type="email" class="form-control" id="scanner_electronicMailAddress" name="scanner_electronicMailAddress">
+                                                </div>
+                                            </div>
+                                            
+                                                                                       
+                                        </div>
+                                    </section>
+                                </form>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="col-9" id="radarsensor" style="display: none;">
+                        <div class="card">
+                            <div class="card-body wizard-content">
+                                
+                                <h6 class="card-subtitle">请按步骤进行操作，带'<span class="danger" style="color: red;">*</span>'为必选项</h6>
+                                <form action="#" class="validation-wizard4 wizard-circle m-t-40">
+                                    <!-- Step 1 -->
+                                    <h6>1、基本信息</h6>
+                                    <section>
+                                        
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="wfirstName2"> 卫星名称:<span class="danger" style="color: red;">*</span> </label>
+                                                    <input type="text" class="form-control required" id="wfirstName2" name="firstName"> </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="wlastName2"> 唯一标识码:<span class="danger" style="color: red;">*</span> </label>
+                                                    <input type="text" class="form-control required" id="wlastName2" name="lastName"> </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="wemailAddress2"> 所属国家:<span class="danger" style="color: red;">*</span> </label>
+                                                    <input type="text" class="form-control required" id="wemailAddress2" name="emailAddress"> </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="wphoneNumber2">运营商:</label>
+                                                    <input type="tel" class="form-control" id="wphoneNumber2"> </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="wlocation2"> 使用者:<span class="danger" style="color: red;">*</span> </label>
+                                                    <select class="custom-select form-control required" style="height: 34px;" id="wlocation2" name="location">
                                                         <option value="">请选择</option>
                                                         <option value="政府">政府</option>
                                                         <option value="商用">商用</option>
@@ -688,7 +1660,186 @@
                                 </form>
                             </div>
                         </div>
-                    </div>                          
+                    </div>
+                    <div class="col-9" id="nonimagingsensor" style="display: none;">
+                        <div class="card">
+                            <div class="card-body wizard-content">
+                                
+                                <h6 class="card-subtitle">请按步骤进行操作，带'<span class="danger" style="color: red;">*</span>'为必选项</h6>
+                                <form action="#" class="validation-wizard5 wizard-circle m-t-40">
+                                    <!-- Step 1 -->
+                                    <h6>1、基本信息</h6>
+                                    <section>
+                                        
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="wfirstName2"> 卫星名称:<span class="danger" style="color: red;">*</span> </label>
+                                                    <input type="text" class="form-control required" id="wfirstName2" name="firstName"> </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="wlastName2"> 唯一标识码:<span class="danger" style="color: red;">*</span> </label>
+                                                    <input type="text" class="form-control required" id="wlastName2" name="lastName"> </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="wemailAddress2"> 所属国家:<span class="danger" style="color: red;">*</span> </label>
+                                                    <input type="text" class="form-control required" id="wemailAddress2" name="emailAddress"> </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="wphoneNumber2">运营商:</label>
+                                                    <input type="tel" class="form-control" id="wphoneNumber2"> </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="wlocation2"> 使用者:<span class="danger" style="color: red;">*</span> </label>
+                                                    <select class="custom-select form-control required" style="height: 34px;" id="wlocation2" name="location">
+                                                        <option value="">请选择</option>
+                                                        <option value="政府">政府</option>
+                                                        <option value="商用">商用</option>
+                                                        
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="wdate2">发射日期:</label>
+                                                    <input type="date" class="form-control" id="wdate2"> </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="application"> 预期应用:<span class="danger" style="color: red;">*</span> </label>
+                                                    <input type="text" class="form-control required" id="application" name="firstName2"> </div>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-md-12">
+                                                <label for="description"> 卫星平台信息描述:</label>
+                                                <textarea class="form-control" id="description" rows="3" style="margin-top: 0px; margin-bottom: 0px; height: 128px;"></textarea>
+                                            </div>
+                                        </div>
+                                        
+                                        
+                                    </section>
+                                    <!-- Step 2 -->
+                                    <h6>2、位置信息</h6>
+                                    <section>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="noradid">NORAD NUMBER:<span class="danger" style="color: red;">*</span></label>
+                                                    <input type="text" class="form-control required" id="noradid">
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                    </section>
+                                    <!-- Step 3 -->
+                                    <h6>3、轨道信息</h6>
+                                    <section>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="Class of Orbit">轨道种类：</label>
+                                                    <input type="text" class="form-control " id="Class of Orbit"> 
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="Type of Orbit">轨道类型：</label>
+                                                    <input type="text" class="form-control" id="Type of Orbit"> 
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="Repeat Cycle">重复周期（天）：</label>
+                                                    <input type="text" class="form-control" id="Repeat Cycle"> 
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="Alt">轨道高程：</label>
+                                                    <input type="text" class="form-control " id="Alt">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">                                    
+                                                <div class="form-group">
+                                                    <label for="Perigee">近地点高度（KM）：</label>
+                                                    <input type="text" class="form-control " id="Perigee">
+                                                    
+                                                </div>
+                                            </div> 
+                                            <div class="col-md-6"> 
+                                                <div class="form-group">
+                                                    <label for="Apogee">远地点高度（KM）：</label>
+                                                    <input type="text" class="form-control " id="Apogee">
+                                         
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="Eccentricity">偏心率：</label>
+                                                    <input type="text" class="form-control " id="Eccentricity">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="Inclination">轨道倾角：</label>
+                                                    <input type="text" class="form-control " id="Inclination">
+                                                    
+                                                </div>                              
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="Period">运行周期（minutes）：</label>
+                                                    <input type="text" class="form-control " id="Period">
+                                                    
+                                                </div>                              
+                                            </div>
+                                        </div>
+                                    </section>
+                                    <!-- Step 4 -->
+                                    <h6>4、其他信息</h6>
+                                    <section>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="Expected Lifetime">预期寿命（years）:</label>
+                                                    <input type="text" class="form-control required" id="Expected Lifetime">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="price">卫星数据价格（元/平方公里）：</label>
+                                                    <input type="text" class="form-control required" id="price">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="isneeded">是否为项目所需卫星：</label>
+                                                    <select class="custom-select form-control required" id="isneeded" name="isneeded">
+                                                        <option value="">请选择</option>
+                                                        <option value="yes">是</option>
+                                                        <option value="no">否</option>
+                                                        
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                    </section>
+                                </form>
+                            </div>
+                        </div>
+                    </div>  
+                                      
                 </div>
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->
@@ -958,190 +2109,426 @@
     <script src="../../assets/extra-libs/treeview/dist/bootstrap-treeview.min.js"></script>
     <script src="../../assets/extra-libs/treeview/dist/bootstrap-treeview-init.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../../assets/extra-libs/prism/prism.js"></script>
+    <script src="../../assets/libs/wnumb/wNumb.js"></script>
+    <script src="../../assets/libs/nouislider/distribute/nouislider.min.js"></script>
+    <script src="../../assets/extra-libs/nouislider/nouislider-init.js"></script>
     <script>
-    //Basic Example
-    $("#example-basic").steps({
-        headerTag: "h3",
-        bodyTag: "section",
-        transitionEffect: "slideLeft",
-        autoFocus: true
-    });
+        //先获取
+        var scanner_innerhtml=document.getElementById("scannersensor").innerHTML;
+        var observationmodel_innerhtml=document.getElementById("observationmodel").innerHTML;
+        var frame_innerhtml=document.getElementById("framesensor").innerHTML;
+        var radar_innerhtml=document.getElementById("radarsensor").innerHTML;
+        var nonimaging_innerhtml=document.getElementById("nonimagingsensor").innerHTML;
 
-    // Basic Example with form
-    var form = $("#example-form");
-    form.validate({
-        errorPlacement: function errorPlacement(error, element) { element.before(error); },
-        rules: {
-            confirm: {
-                equalTo: "#password"
-            }
-        }
-    });
-    form.children("div").steps({
-        headerTag: "h3",
-        bodyTag: "section",
-        transitionEffect: "slideLeft",
-        onStepChanging: function(event, currentIndex, newIndex) {
-            form.validate().settings.ignore = ":disabled,:hidden";
-            return form.valid();
-        },
-        onFinishing: function(event, currentIndex) {
-            form.validate().settings.ignore = ":disabled";
-            return form.valid();
-        },
-        onFinished: function(event, currentIndex) {
-            alert("Submitted!");
-        }
-    });
+    //Basic Example   
 
-    // Advance Example
+        function reloadscannerjs(){
+            var form = $(".validation-wizard").show();
+            $(".validation-wizard").steps({
+            headerTag: "h6",
+            bodyTag: "section",
+            transitionEffect: "fade",
+            titleTemplate: '<span class="step">#index#</span> #title#',
+            labels: {
+                previous:"上一步",
+                next:"下一步",
+                finish: "完成"
+            },
+            onStepChanging: function (event, currentIndex, newIndex)
+            {
+                form.validate().settings.ignore = ":disabled,:hidden";
+                return form.valid();
+            },
+            onFinishing: function (event, currentIndex)
+            {
+                form.validate().settings.ignore = ":disabled";
+                return form.valid();
+            },
+            
+            onFinished: function (event, currentIndex)
+            {
+                swal({
 
-    var form = $("#example-advanced-form").show();
-
-    form.steps({
-        headerTag: "h3",
-        bodyTag: "fieldset",
-        transitionEffect: "slideLeft",
-        onStepChanging: function(event, currentIndex, newIndex) {
-            // Allways allow previous action even if the current form is not valid!
-            if (currentIndex > newIndex) {
-                return true;
-            }
-            // Forbid next action on "Warning" step if the user is to young
-            if (newIndex === 3 && Number($("#age-2").val()) < 18) {
-                return false;
-            }
-            // Needed in some cases if the user went back (clean up)
-            if (currentIndex < newIndex) {
-                // To remove error styles
-                form.find(".body:eq(" + newIndex + ") label.error").remove();
-                form.find(".body:eq(" + newIndex + ") .error").removeClass("error");
-            }
-            form.validate().settings.ignore = ":disabled,:hidden";
-            return form.valid();
-        },
-        onStepChanged: function(event, currentIndex, priorIndex) {
-            // Used to skip the "Warning" step if the user is old enough.
-            if (currentIndex === 2 && Number($("#age-2").val()) >= 18) {
-                form.steps("next");
-            }
-            // Used to skip the "Warning" step if the user is old enough and wants to the previous step.
-            if (currentIndex === 2 && priorIndex === 3) {
-                form.steps("previous");
-            }
-        },
-        onFinishing: function(event, currentIndex) {
-            form.validate().settings.ignore = ":disabled";
-            return form.valid();
-        },
-        onFinished: function(event, currentIndex) {
-            alert("Submitted!");
-        }
-    }).validate({
-        errorPlacement: function errorPlacement(error, element) { element.before(error); },
-        rules: {
-            confirm: {
-                equalTo: "#password-2"
-            }
-        }
-    });
-
-    // Dynamic Manipulation
-    $("#example-manipulation").steps({
-        headerTag: "h3",
-        bodyTag: "section",
-        enableAllSteps: true,
-        enablePagination: false
-    });
-
-    //Vertical Steps
-
-    $("#example-vertical").steps({
-        headerTag: "h3",
-        bodyTag: "section",
-        transitionEffect: "slideLeft",
-        stepsOrientation: "vertical"
-    });
-
-    //Custom design form example
-    $(".tab-wizard").steps({
-        headerTag: "h6",
-        bodyTag: "section",
-        transitionEffect: "fade",
-        titleTemplate: '<span class="step">#index#</span> #title#',
-        labels: {
-            finish: "Submit"
-        },
-        onFinished: function(event, currentIndex) {
-            swal("Form Submitted!", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lorem erat eleifend ex semper, lobortis purus sed.");
-
-        }
-    });
-
-
-    var form = $(".validation-wizard").show();
-
-    $(".validation-wizard").steps({
-        headerTag: "h6",
-        bodyTag: "section",
-        transitionEffect: "fade",
-        titleTemplate: '<span class="step">#index#</span> #title#',
-        labels: {
-            previous:"上一步",
-            next:"下一步",
-            finish: "完成"
-        },
-        onStepChanging: function (event, currentIndex, newIndex)
-        {
-            form.validate().settings.ignore = ":disabled,:hidden";
-            return form.valid();
-        },
-        onFinishing: function (event, currentIndex)
-        {
-            form.validate().settings.ignore = ":disabled";
-            return form.valid();
-        },
-        
-        onFinished: function (event, currentIndex)
-        {
-            swal({
-
-                title: "已完成！",
-                text: "接下来开始搭载传感器",
-                icon: "success",
-                buttons: {
-                    go: "完成该平台建模",
-                }
-                   
-                })
-                .then((value) => {
-                    switch (value) {
-
- 
-                        case "go":
-                            document.getElementById("showdetail").style.display = 'block' ;         
-                            document.getElementById("observationmodel").style.display = 'none' ;
-                        break;
-
-                       
+                    title: "已完成！",
+                    text: "该传感器已成功搭载",
+                    icon: "success",
+                    buttons: {
+                        go: "完成",
                     }
-                    });
-                
+                    
+                    })
+                    .then((value) => {
+                        switch (value) {
+
+
+                            case "go":
+                                reload_scannersensor();
+                                
+                                
+                                document.getElementById("showdetail").style.display = 'block' ;         
+                                document.getElementById("observationmodel").style.display = 'none' ;
+                                document.getElementById("framesensor").style.display='none';
+                                document.getElementById("scannersensor").style.display = 'none' ;
+                                document.getElementById("radarsensor").style.display='none';
+                                document.getElementById("nonimagingsensor").style.display='none';
+                                reloadscannerjs();
+                            break;
+
+                        
+                        }
+                        });
+                    
+            }
+        }), $(".validation-wizard").validate({
+            ignore: "input[type=hidden]",
+            errorClass: "text-danger",
+            successClass: "text-success",
+            highlight: function(element, errorClass) {
+                $(element).removeClass(errorClass)
+            },
+            unhighlight: function(element, errorClass) {
+                $(element).removeClass(errorClass)
+            },
+            errorPlacement: function(error, element) {
+                error.insertAfter(element)
+            }
+        })
+
         }
-    }), $(".validation-wizard").validate({
-        ignore: "input[type=hidden]",
-        errorClass: "text-danger",
-        successClass: "text-success",
-        highlight: function(element, errorClass) {
-            $(element).removeClass(errorClass)
-        },
-        unhighlight: function(element, errorClass) {
-            $(element).removeClass(errorClass)
-        },
-        errorPlacement: function(error, element) {
-            error.insertAfter(element)
+        reloadscannerjs();
+        
+
+        
+   
+
+    
+    </script>
+
+    <script>
+        var form2 = $(".validation-wizard2").show();
+
+        $(".validation-wizard2").steps({
+            headerTag: "h6",
+            bodyTag: "section",
+            transitionEffect: "fade",
+            titleTemplate: '<span class="step">#index#</span> #title#',
+            labels: {
+                previous:"上一步",
+                next:"下一步",
+                finish: "完成"
+            },
+            onStepChanging: function (event, currentIndex, newIndex)
+            {
+                form2.validate().settings.ignore = ":disabled,:hidden";
+                return form2.valid();
+            },
+            onFinishing: function (event, currentIndex)
+            {
+                form2.validate().settings.ignore = ":disabled";
+                return form2.valid();
+            },
+            
+            onFinished: function (event, currentIndex)
+            {
+                swal({
+
+                    title: "已完成！",
+                    text: "该传感器已成功搭载",
+                    icon: "success",
+                    buttons: {
+                        go: "完成",
+                    }
+                    
+                    })
+                    .then((value) => {
+                        switch (value) {
+
+
+                            case "go":
+                                document.getElementById("showdetail").style.display = 'block' ;         
+                                document.getElementById("observationmodel").style.display = 'none' ;
+                                document.getElementById("framesensor").style.display='none';
+                                document.getElementById("scannersensor").style.display = 'none' ;
+                                document.getElementById("radarsensor").style.display='none';
+                                document.getElementById("nonimagingsensor").style.display='none';
+                            break;
+
+                        
+                        }
+                        });
+                    
+            }
+        }), $(".validation-wizard2").validate({
+            ignore: "input[type=hidden]",
+            errorClass: "text-danger",
+            successClass: "text-success",
+            highlight: function(element, errorClass) {
+                $(element).removeClass(errorClass)
+            },
+            unhighlight: function(element, errorClass) {
+                $(element).removeClass(errorClass)
+            },
+            errorPlacement: function(error, element) {
+                error.insertAfter(element)
+            }
+        })
+    </script>
+    <script>
+        var form3 = $(".validation-wizard3").show();
+
+        $(".validation-wizard3").steps({
+            headerTag: "h6",
+            bodyTag: "section",
+            transitionEffect: "fade",
+            titleTemplate: '<span class="step">#index#</span> #title#',
+            labels: {
+                previous:"上一步",
+                next:"下一步",
+                finish: "完成"
+            },
+            onStepChanging: function (event, currentIndex, newIndex)
+            {
+                form3.validate().settings.ignore = ":disabled,:hidden";
+                return form3.valid();
+            },
+            onFinishing: function (event, currentIndex)
+            {
+                form3.validate().settings.ignore = ":disabled";
+                return form3.valid();
+            },
+            
+            onFinished: function (event, currentIndex)
+            {
+                swal({
+
+                    title: "已完成！",
+                    text: "该传感器已成功搭载",
+                    icon: "success",
+                    buttons: {
+                        go: "完成",
+                    }
+                    
+                    })
+                    .then((value) => {
+                        switch (value) {
+
+
+                            case "go":
+                                document.getElementById("showdetail").style.display = 'block' ;         
+                                document.getElementById("observationmodel").style.display = 'none' ;
+                                document.getElementById("framesensor").style.display='none';
+                                document.getElementById("scannersensor").style.display = 'none' ;
+                                document.getElementById("radarsensor").style.display='none';
+                                document.getElementById("nonimagingsensor").style.display='none';
+                            break;
+
+                        
+                        }
+                        });
+                    
+            }
+        }), $(".validation-wizard3").validate({
+            ignore: "input[type=hidden]",
+            errorClass: "text-danger",
+            successClass: "text-success",
+            highlight: function(element, errorClass) {
+                $(element).removeClass(errorClass)
+            },
+            unhighlight: function(element, errorClass) {
+                $(element).removeClass(errorClass)
+            },
+            errorPlacement: function(error, element) {
+                error.insertAfter(element)
+            }
+        })
+    </script>
+    <script>
+        var form4 = $(".validation-wizard4").show();
+
+        $(".validation-wizard4").steps({
+            headerTag: "h6",
+            bodyTag: "section",
+            transitionEffect: "fade",
+            titleTemplate: '<span class="step">#index#</span> #title#',
+            labels: {
+                previous:"上一步",
+                next:"下一步",
+                finish: "完成"
+            },
+            onStepChanging: function (event, currentIndex, newIndex)
+            {
+                form4.validate().settings.ignore = ":disabled,:hidden";
+                return form4.valid();
+            },
+            onFinishing: function (event, currentIndex)
+            {
+                form4.validate().settings.ignore = ":disabled";
+                return form4.valid();
+            },
+            
+            onFinished: function (event, currentIndex)
+            {
+                swal({
+
+                    title: "已完成！",
+                    text: "该传感器已成功搭载",
+                    icon: "success",
+                    buttons: {
+                        go: "完成",
+                    }
+                    
+                    })
+                    .then((value) => {
+                        switch (value) {
+
+
+                            case "go":
+                                document.getElementById("showdetail").style.display = 'block' ;         
+                                document.getElementById("observationmodel").style.display = 'none' ;
+                                document.getElementById("framesensor").style.display='none';
+                                document.getElementById("scannersensor").style.display = 'none' ;
+                                document.getElementById("radarsensor").style.display='none';
+                                document.getElementById("nonimagingsensor").style.display='none';
+                            break;
+
+                        
+                        }
+                        });
+                    
+            }
+        }), $(".validation-wizard4").validate({
+            ignore: "input[type=hidden]",
+            errorClass: "text-danger",
+            successClass: "text-success",
+            highlight: function(element, errorClass) {
+                $(element).removeClass(errorClass)
+            },
+            unhighlight: function(element, errorClass) {
+                $(element).removeClass(errorClass)
+            },
+            errorPlacement: function(error, element) {
+                error.insertAfter(element)
+            }
+        })
+    </script>
+    <script>
+        var form5 = $(".validation-wizard5").show();
+
+        $(".validation-wizard5").steps({
+            headerTag: "h6",
+            bodyTag: "section",
+            transitionEffect: "fade",
+            titleTemplate: '<span class="step">#index#</span> #title#',
+            labels: {
+                previous:"上一步",
+                next:"下一步",
+                finish: "完成"
+            },
+            onStepChanging: function (event, currentIndex, newIndex)
+            {
+                form5.validate().settings.ignore = ":disabled,:hidden";
+                return form5.valid();
+            },
+            onFinishing: function (event, currentIndex)
+            {
+                form5.validate().settings.ignore = ":disabled";
+                return form5.valid();
+            },
+            
+            onFinished: function (event, currentIndex)
+            {
+                swal({
+
+                    title: "已完成！",
+                    text: "该传感器已成功搭载",
+                    icon: "success",
+                    buttons: {
+                        go: "完成",
+                    }
+                    
+                    })
+                    .then((value) => {
+                        switch (value) {
+
+
+                            case "go":
+                                document.getElementById("showdetail").style.display = 'block' ;         
+                                document.getElementById("observationmodel").style.display = 'none' ;
+                                document.getElementById("framesensor").style.display='none';
+                                document.getElementById("scannersensor").style.display = 'none' ;
+                                document.getElementById("radarsensor").style.display='none';
+                                document.getElementById("nonimagingsensor").style.display='none';
+                            break;
+
+                        
+                        }
+                        });
+                    
+            }
+        }), $(".validation-wizard5").validate({
+            ignore: "input[type=hidden]",
+            errorClass: "text-danger",
+            successClass: "text-success",
+            highlight: function(element, errorClass) {
+                $(element).removeClass(errorClass)
+            },
+            unhighlight: function(element, errorClass) {
+                $(element).removeClass(errorClass)
+            },
+            errorPlacement: function(error, element) {
+                error.insertAfter(element)
+            }
+        })
+    </script>
+    <script>
+        
+        //alert(scanner_innerhtml);
+        function reload_scannersensor(){
+            document.getElementById("scannersensor").innerHTML=scanner_innerhtml;
+            
+            //window.location.reload();
         }
-    })
+    </script>
+
+
+
+
+
+
+    <script>
+        function gotoframesensor(){
+            document.getElementById("showdetail").style.display = 'none' ;         
+            document.getElementById("observationmodel").style.display = 'none' ;
+            document.getElementById("framesensor").style.display='block';
+            document.getElementById("scannersensor").style.display = 'none' ;
+            document.getElementById("radarsensor").style.display='none';
+            document.getElementById("nonimagingsensor").style.display='none';
+        };
+        function gotoscannersensor(){
+            document.getElementById("showdetail").style.display = 'none' ;         
+            document.getElementById("observationmodel").style.display = 'none' ;
+            document.getElementById("framesensor").style.display='none';
+            document.getElementById("scannersensor").style.display = 'block' ;
+            document.getElementById("radarsensor").style.display='none';
+            document.getElementById("nonimagingsensor").style.display='none';
+        };
+        function gotoradarsensor(){
+            document.getElementById("showdetail").style.display = 'none' ;         
+            document.getElementById("observationmodel").style.display = 'none' ;
+            document.getElementById("framesensor").style.display='none';
+            document.getElementById("scannersensor").style.display = 'none' ;
+            document.getElementById("radarsensor").style.display='block';
+            document.getElementById("nonimagingsensor").style.display='none';
+        };
+        function gotononimagingsensor(){
+            document.getElementById("showdetail").style.display = 'none' ;         
+            document.getElementById("observationmodel").style.display = 'none' ;
+            document.getElementById("framesensor").style.display='none';
+            document.getElementById("scannersensor").style.display = 'none' ;
+            document.getElementById("radarsensor").style.display='none';
+            document.getElementById("nonimagingsensor").style.display='block';
+        }
     </script>
 </body>
 

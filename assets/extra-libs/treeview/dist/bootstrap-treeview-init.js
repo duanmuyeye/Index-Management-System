@@ -92,6 +92,7 @@ $(function() {
             tags: ['available','0']
           }
         ];
+        
 
         var json = '[' +
           '{' +
@@ -177,19 +178,20 @@ $(function() {
           nodeIcon: 'fa fa-bookmark',
           data: defaultData,
           onNodeSelected:function(event, data) {
-          var node= $('#treeview5').treeview('getSelected');
-          if(node[0].tags=='0'){
-            document.getElementById("showdetail").style.display = 'block' ;
-            document.getElementById("preview_name").innerText=node[0].text;
-          
-            document.getElementById("observationmodel").style.display = 'none' ;
-            document.getElementById("framesensor").style.display='none';
-            document.getElementById("scannersensor").style.display = 'none' ;
-            document.getElementById("radarsensor").style.display='none';
-            document.getElementById("nonimagingsensor").style.display='none';
 
-          }
-          
+            var node= $('#treeview5').treeview('getSelected');
+            if(node[0].tags=='0'){
+              document.getElementById("showdetail").style.display = 'block' ;
+              document.getElementById("preview_name").innerText=node[0].text;
+            
+              document.getElementById("observationmodel").style.display = 'none' ;
+              document.getElementById("framesensor").style.display='none';
+              document.getElementById("scannersensor").style.display = 'none' ;
+              document.getElementById("radarsensor").style.display='none';
+              document.getElementById("nonimagingsensor").style.display='none';
+
+            }
+            
           
         }
 

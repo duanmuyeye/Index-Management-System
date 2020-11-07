@@ -300,7 +300,7 @@
         <!-- ============================================================== -->
         <!-- Left Sidebar - style you can find in sidebar.scss  -->
         <!-- ============================================================== -->
-        <aside class="left-sidebar">
+        <aside class="left-sidebar"  data-sidebarbg="skin6" id="sidebar_colortest">
             <!-- Sidebar scroll-->
             <div class="scroll-sidebar">
                 <!-- Sidebar navigation-->
@@ -1086,6 +1086,13 @@
     <!--Morris JavaScript -->
     <script src="../../assets/libs/raphael/raphael.min.js"></script>
     <script src="../../assets/libs/morris.js/morris.min.js"></script>
+    <script>
+        function changecolor(){
+          var color=  document.getElementById("sidebar_colortest").data-sidebarbg;
+          color="skin6";
+        }
+changecolor();
+    </script>
 </body>
 
 </html>

@@ -616,16 +616,21 @@
                                     <h6>3、能力信息</h6>
                                     <section>
                                         <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="scanner_resolution">地面分辨率(m)：<span class="danger" style="color: red;">*</span></label>
-                                                    <div class="form-group">
-                                                        <div id="nonlinear" class="m-t-15 m-b-15"></div>
-                                                        <span id="lower-value"></span>
-                                                        <span id="upper-value"></span>
-                                                    </div>
-                                                </div>
+                                            <div class="form-group col-md-12 m-t-20">
+                                                <label for="scanner_resolution">地面分辨率(m)：<span class="danger" style="color: red;">*</span></label>                                                  
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text">输入地面分辨率范围</span>
+                                                        </div>
+                                                        <input type="text" class="form-control required" id="scanner_resolution_low" name="scanner_resolution_low">
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text">至</span>
+                                                        </div>
+                                                        <input type="text" class="form-control required" id="scanner_resolution_high" name="scanner_resolution_high">
+                                                    </div>                                                   
+                                                   
                                             </div>
+                                            
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="scanner_FOV">视场角(deg):</label>
@@ -1046,7 +1051,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="price">卫星数据价格：</label>
-                                                    <input type="text" class="form-control " id="price">
+                                                    <input type="text" class="form-control " id="price" name="price">
                                                 </div>
                                                 
                                             </div>
@@ -1194,11 +1199,11 @@
                                                         <div class="input-group-prepend">
                                                             <span class="input-group-text">输入地面分辨率范围</span>
                                                         </div>
-                                                        <input type="text" class="form-control" id="frame_resolution_low">
+                                                        <input type="text" class="form-control required" id="frame_resolution_low" name="frame_resolution_low">
                                                         <div class="input-group-append">
                                                             <span class="input-group-text">至</span>
                                                         </div>
-                                                        <input type="text" class="form-control" id="frame_resolution_high">
+                                                        <input type="text" class="form-control required" id="frame_resolution_high" name="frame_resolution_high">
                                                     </div>                                                   
                                                    
                                             </div>
@@ -1598,11 +1603,11 @@
                                                             <div class="input-group-prepend">
                                                                 <span class="input-group-text">输入地面分辨率范围</span>
                                                             </div>
-                                                            <input type="text" class="form-control" id="radar_resolution_low" name="radar_resolution_low">
+                                                            <input type="text" class="form-control required" id="radar_resolution_low" name="radar_resolution_low">
                                                             <div class="input-group-append">
                                                                 <span class="input-group-text">至</span>
                                                             </div>
-                                                            <input type="text" class="form-control" id="radar_resolution_high" name="radar_resolution_high">
+                                                            <input type="text" class="form-control required" id="radar_resolution_high" name="radar_resolution_high">
                                                         </div>                                                   
                                                     
                                                 </div>
@@ -2860,6 +2865,28 @@
                         }
                         console.log(jsonarray);
                         //jsonarray.push(arr);
+                        //此处为将表格tbody中的所有表格内容转化为json格式 以便于传递给后台进行sensorml的生成  不过并不打算将此处json放进树结构的value中进行信息预览显示（麻烦）
+                       
+                        var radar_band_obj=[];
+                        var tbody=document.getElementById('radar_bandlist');
+                        var rows=tbody.rows;
+                        //生成json格式如：[{"波束模式":"747","入射角度":"474","标称地面分辨率":"7474","距离分辨率":"747","方位分辨率":"4747","标称幅宽":"4747","模式应用":"474"},{"波束模式":"4747","入射角度":"47474","标称地面分辨率":"747","距离分辨率":"47474","方位分辨率":"7474","标称幅宽":"7474","模式应用":"74"}]
+                        for(var i=0;i<rows.length;i++){//遍历行
+                            var cells=rows[i].cells;
+                            var index=i.toString();
+                            radar_band_obj[index]={};
+                            radar_band_obj[index].波束模式=cells[0].innerHTML;
+                            radar_band_obj[index].入射角度=cells[1].innerHTML;
+                            radar_band_obj[index].标称地面分辨率=cells[2].innerHTML;
+                            radar_band_obj[index].距离分辨率=cells[3].innerHTML;
+                            radar_band_obj[index].方位分辨率=cells[4].innerHTML;
+                            radar_band_obj[index].标称幅宽=cells[5].innerHTML;
+                            radar_band_obj[index].模式应用=cells[6].innerHTML;
+                            
+                        }
+                        
+                        
+                        console.log(JSON.stringify(radar_band_obj));
 
                         tree=JSON.stringify(jsonarray);
                         $.ajax({//更新后台json
@@ -3015,6 +3042,37 @@
 
                             //提取数据
                             var countrys = xmlDoc.getElementsByTagName('string');
+                            if(countrys[0].textContent=="1"){
+                                swal({
+
+                                    title: "已完成！",
+                                    text: "该卫星平台已建立,开始搭载传感器",
+
+                                    icon: "success",
+                                    buttons: {
+                                        go: "完成",
+                                    }
+
+                                    })
+                                    .then((value) => {
+                                        switch (value) {
+
+
+                                            case "go":
+                                                reload_satelliteplatform();
+                                                document.getElementById("showdetail").style.display = 'block' ;         
+                                                document.getElementById("observationmodel").style.display = 'none' ;
+                                                document.getElementById("framesensor").style.display='none';
+                                                document.getElementById("scannersensor").style.display = 'none' ;
+                                                document.getElementById("radarsensor").style.display='none';
+                                                document.getElementById("nonimagingsensor").style.display='none';
+                                            break;
+
+                                        
+                                        }
+                                    });
+
+                            }
                             console.log(countrys[0].textContent);
                         }
 
@@ -3035,51 +3093,24 @@
 		
 	                });*/     
 
-                    swal({
-
-                        title: "已完成！",
-                        text: "该卫星平台已建立,开始搭载传感器",
+                 
                         
-                        icon: "success",
-                        buttons: {
-                            go: "完成",
-                        }
-                        
-                        })
-                        .then((value) => {
-                            switch (value) {
-
-
-                                case "go":
-                                    reload_satelliteplatform();
-                                    document.getElementById("showdetail").style.display = 'block' ;         
-                                    document.getElementById("observationmodel").style.display = 'none' ;
-                                    document.getElementById("framesensor").style.display='none';
-                                    document.getElementById("scannersensor").style.display = 'none' ;
-                                    document.getElementById("radarsensor").style.display='none';
-                                    document.getElementById("nonimagingsensor").style.display='none';
-                                break;
-
-                            
-                            }
-                            });
-                        
-                }
-            }), $(".validation-wizard2").validate({
-                ignore: "input[type=hidden]",
-                errorClass: "text-danger",
-                successClass: "text-success",
-                highlight: function(element, errorClass) {
-                    $(element).removeClass(errorClass)
-                },
-                unhighlight: function(element, errorClass) {
-                    $(element).removeClass(errorClass)
-                },
-                errorPlacement: function(error, element) {
-                    error.insertAfter(element)
-                }
-            })
-        }
+                    }
+                }), $(".validation-wizard2").validate({
+                    ignore: "input[type=hidden]",
+                    errorClass: "text-danger",
+                    successClass: "text-success",
+                    highlight: function(element, errorClass) {
+                        $(element).removeClass(errorClass)
+                    },
+                    unhighlight: function(element, errorClass) {
+                        $(element).removeClass(errorClass)
+                    },
+                    errorPlacement: function(error, element) {
+                        error.insertAfter(element)
+                    }
+                })
+            }
         reloadsatellitejs();
    
         function reloadnonimagingjs(){
